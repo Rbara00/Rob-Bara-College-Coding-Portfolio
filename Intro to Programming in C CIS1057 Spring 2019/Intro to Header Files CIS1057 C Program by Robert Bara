@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "../include/cis1057.h"
+
+/*
+ * Programmer:    Robert Bara
+ * Class:         Introduction to C Programming 1057 Spring 2019
+                  Section 004      
+ * Assignment:    Number 3 â€“ Create my header file
+ * Date:          << 1/30/2019 >>
+ * Version:       1 
+ * Description:   Create and test out our header file.
+ * File:          lab3.c
+ */
+
+const int MY_SPEED_IN_KILOMETERS = 100;
+const int MY_SPEED_IN_MILES = 62;		//100km is approximately 62mi
+
+int main()
+{
+	// Create and print out my header
+	const char *my_banner = "This program was created by " 
+	    PROGRAMMER_NAME " at " ORGANIZATION "\nfor the " LAB 
+	    " department.";
+	
+	printf( "\n%s\n", my_banner );
+	puts( "(c) 2019 " PROGRAMMER_NAME );
+
+	// Print out the Temple slogan
+	printf( "\n%s!\n\n", TEMPLE_SLOGAN );
+
+	// Let's drive to the moon!
+	printf( "The moon is %d kilometers away.\n", 
+		AVERAGE_DISTANCE_EARTH_TO_MOON_IN_KILOMETERS );
+	printf( "In miles, the moon is %d miles away. \n",
+		AVERAGE_DISTANCE_EARTH_TO_MOON_IN_MILES );
+
+	printf( "\n Driving at %d kilometers an hour, it would take %d hours\n"
+		"to get to the moon.\n\n",
+			MY_SPEED_IN_KILOMETERS,
+			AVERAGE_DISTANCE_EARTH_TO_MOON_IN_KILOMETERS / 100 );		//Calculations for km
+	printf( "Driving at %d miles an hour, it would take %d hours\n"
+		"to get to the moon, if 100km is approximately 62mi.\n\n",		
+			MY_SPEED_IN_MILES,
+			AVERAGE_DISTANCE_EARTH_TO_MOON_IN_MILES / MY_SPEED_IN_MILES ); //Calculations for km
+
+	return EXIT_SUCCESS;
+}
+#ifndef CIS1057_H
+#define CIS1057_H
+
+/*
+ * Description:    Header file to use for spring 2019 C programming.
+ * Programmer:     Robert Bara
+ * Date:           1/30/2019
+ * File:	        cis1057.h
+ */ 
+
+#define PROGRAMMER_NAME     "Robert Bara"           // your name here
+#define ORGANIZATION        "Temple University"
+#define LAB                 "Computer Science"
+#define ASSIGNED_CLASS      "CIS 1057 Spring 2019"
+#define EMAIL_ADDRESS       "tuj22026@temple.edu"  // your email here
+
+#define YARDS_IN_MILE       1760
+#define DEGREES_IN_CIRCLE    360
+#define NUMBER_OF_US_STATES   50
+#define ONE_CM_IN_INCHES       0.3937
+#define ONE_INCH_IN_CM         2.54	
+
+#define MY_FAVORITE_NUMBER	8675             // your number here
+
+const char *TEMPLE_MASCOT          = "Stella the Owl";
+const char *TEMPLE_MASCOT_TWITTER  = "@StellaEPZ";
+const char *TEMPLE_SLOGAN          = "Go Owls";
+
+const int AVERAGE_DISTANCE_EARTH_TO_MOON_IN_KILOMETERS      = 384400;
+const int AVERAGE_DISTANCE_EARTH_TO_MOON_IN_MILES           = 238900;
+const int AVERAGE_DISTANCE_PHILADELPHIA_TO_LA_IN_KILOMETERS = 3852;
+const int AVERAGE_DISTANCE_PHILADELPHIA_TO_LA_IN_MILES      = 2393;
+
+const int DAYS_IN_JANUARY                              = 31;
+const int DAYS_IN_FEBRUARY                             = 28;
+const int DAYS_IN_MARCH                                = 31;
+
+// 4567890123456789012345678901234567890123456789012345678901234567890
+//       1111111111222222222233333333334444444444555555555566666666667
+
+#endif // CIS1057_H 
+
+Script started on Wed 30 Jan 2019 05:40:39 PM EST
+]0;tuj22026@astro:~/lab3[?1034h[Wed Jan 30 17:40:39 [31mtuj22026@astro[0m:~/lab3 ] $ cc lab3.c
+]0;tuj22026@astro:~/lab3[Wed Jan 30 17:40:45 [31mtuj22026@astro[0m:~/lab3 ] $ cc lab3.cnano question.c[2Pcc[C[C[C[C[C[C[C[C[C[C[C[2@nano[C[C[C[C[C[C[C[C[C[C[C[7Pcd $HOMEnano lab3.c[3Pcd $HOMEnano question.c[2Pcc[C[C[C[C[C[C[C[C[C[C[C[2@nano[C[C[C[C[C[C[C[C[C[C[C[6Pcc lab3.c[K./a.out
+
+This program was created by Robert Bara at Temple University
+for the Computer Science department.
+(c) 2019 Robert Bara
+
+Go Owls!
+
+The moon is 384400 kilometers away.
+In miles, the moon is 238900 miles away. 
+
+ Driving at 100 kilometers an hour, it would take 3844 hours
+to get to the moon.
+
+Driving at 62 miles an hour, it would take 3853 hours
+to get to the moon, if 100km is approximately 62mi.
+
+]0;tuj22026@astro:~/lab3[Wed Jan 30 17:40:52 [31mtuj22026@astro[0m:~/lab3 ] $ exit
+exit
+
+Script done on Wed 30 Jan 2019 05:41:02 PM EST

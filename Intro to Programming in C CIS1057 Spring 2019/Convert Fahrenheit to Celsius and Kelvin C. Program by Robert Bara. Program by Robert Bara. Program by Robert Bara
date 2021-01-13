@@ -1,0 +1,106 @@
+/*
+ *Function: 	get_fahrenheit_value_from_user(), 
+ *          	convert_fahrenheit_to_celsius(fahrenheit), convert_celsius_to_kelvin(celsius)
+ *Programmer:   Robert Bara
+ *Date: 	February 13 2019
+ *Inputs: 	variable fahrenheit- inputed value from variable f to be used in other functions
+ *	  	variable celsius- takes the converted value of fahrienheit to celsius and uses it as an input 
+ *		for kelvin
+ *		variable fah- inputs the fahrenheit result into the printf function
+ *		variable cel- inputs the celsius result into the printf function
+ *		variable kel- inputs the kelvin result into the printf function
+ *		variable f-   inputs a tempurature entered by the user in fahrenheit
+ *Outputs: 	variable celsius- Outputs a converted value from fahrienheit to celsius
+ *	   	variable kelvin- Outputs a converted value from celsius to kelvin
+ *Globals: 	ADJUSTMENT- Represents 5/9 which is used to convert Fahrenheit to Celsius
+ *	   	ADJUSTMENT2- Represents 273 which is added to Celesius to get Kelvin
+ *Returns: 	The Temperature in Fahrenheit, Celsius, and Kelvin
+ *Description:  This program takes a Fahreneheit temperature inserted by the user and converts the temperature 
+ *		into Celsius and Kelvin, and displays the temperature in all three units.
+ */
+#include <stdio.h>
+#include <stdlib.h>	
+#include "../include/cis1057.h" 
+#define ADJUSTMENT 0.5555555 
+#define ADJUSTMENT2 273.0    
+
+double get_fahrenheit_value_from_user( void ); 
+double convert_fahrenheit_to_celsius( double fahrenheit );
+double convert_celsius_to_kelvin (double kelvin); 
+
+/* Function Prototype */
+void print_result( double fah, double cel, double kel );	
+int main()  //Driver
+{
+
+	print_cis1057_banner(4,"Convert Fahrenheit to Celsius and Kelvin."); 
+
+	double fahrenheit, celsius, kelvin;	
+
+	fahrenheit = get_fahrenheit_value_from_user(); 
+	celsius = convert_fahrenheit_to_celsius( fahrenheit );
+	kelvin = convert_celsius_to_kelvin(celsius); 
+	print_result( fahrenheit, celsius, kelvin ); 
+
+	return EXIT_SUCCESS;
+}
+/*Function Definitions*/
+double get_fahrenheit_value_from_user( void ) 
+{
+	double f;
+
+	printf( "Enter a temperature in fahrenheit: " ); 
+	scanf( "%lf", &f );				
+	return f;			    
+}
+
+double convert_fahrenheit_to_celsius( double fahrenheit )  
+{
+	return ( fahrenheit - 32.0 ) * ADJUSTMENT; 
+}
+double convert_celsius_to_kelvin (double celsius) 
+{
+	return celsius + ADJUSTMENT2;	
+}
+void print_result( double fah, double cel, double kel )  
+{
+	printf( "%0.2lf degrees fahrenheit is %0.2lf in celsius and %.2lf degrees in kelvin.\n", 
+		fah, cel, kel ); 
+	printf( "%lfF = %lfC = %lfK.\n", fah, cel, kel );
+	return;
+}
+Script started on Mon 11 Feb 2019 08:36:12 PM EST
+]0;tuj22026@astro:~/lab4[?1034h[Mon Feb 11 20:36:13 [31mtuj22026@astro[0m:~/lab4 ] $ nano lab3analysis[6Pcd Homeworknano lab3analysis[K./a.out
+Lab# Assignment 4
+Convert Fahrenheit to Celsius and Kelvin.
+Enter a temperature in fahrenheit: 80
+80.00 degrees fahrenheit is 26.67 in celsius and 299.67 degrees in kelvin.
+80.000000F = 26.666664C = 299.666664K.
+]0;tuj22026@astro:~/lab4[Mon Feb 11 20:36:35 [31mtuj22026@astro[0m:~/lab4 ] $ ./a.out
+Lab# Assignment 4
+Convert Fahrenheit to Celsius and Kelvin.
+Enter a temperature in fahrenheit: 100
+100.00 degrees fahrenheit is 37.78 in celsius and 310.78 degrees in kelvin.
+100.000000F = 37.777774C = 310.777774K.
+]0;tuj22026@astro:~/lab4[Mon Feb 11 20:36:41 [31mtuj22026@astro[0m:~/lab4 ] $ ./a.out
+Lab# Assignment 4
+Convert Fahrenheit to Celsius and Kelvin.
+Enter a temperature in fahrenheit: -5
+-5.00 degrees fahrenheit is -20.56 in celsius and 252.44 degrees in kelvin.
+-5.000000F = -20.555553C = 252.444446K.
+]0;tuj22026@astro:~/lab4[Mon Feb 11 20:36:47 [31mtuj22026@astro[0m:~/lab4 ] $ ./a.out
+Lab# Assignment 4
+Convert Fahrenheit to Celsius and Kelvin.
+Enter a temperature in fahrenheit: 32
+32.00 degrees fahrenheit is 0.00 in celsius and 273.00 degrees in kelvin.
+32.000000F = 0.000000C = 273.000000K.
+]0;tuj22026@astro:~/lab4[Mon Feb 11 20:36:51 [31mtuj22026@astro[0m:~/lab4 ] $ ./a.out
+Lab# Assignment 4
+Convert Fahrenheit to Celsius and Kelvin.
+Enter a temperature in fahrenheit: 212
+212.00 degrees fahrenheit is 100.00 in celsius and 373.00 degrees in kelvin.
+212.000000F = 99.999990C = 372.999990K.
+]0;tuj22026@astro:~/lab4[Mon Feb 11 20:36:55 [31mtuj22026@astro[0m:~/lab4 ] $ exit
+exit
+
+Script done on Mon 11 Feb 2019 08:37:20 PM EST

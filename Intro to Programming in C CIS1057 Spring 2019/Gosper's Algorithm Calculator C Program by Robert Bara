@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include <stdlib.h>	
+#include "../include/cis1057.h"
+#include <math.h>
+
+#define PI 3.14159
+
+int prompt_and_return_integer(const char *prompt);
+double estimate_gospers_algorithm(double findme);
+void display_results(const double answer2);
+
+/*
+ * Location:Temple University Computer Science 
+ * Programmer:Robert Bara
+ * Class:Introduction to C Programming1057 Spring2019Section 004
+ * Assignment:5-Gosper's Algorithm Calculator
+ * Date:February 20, 2019
+ * Version:1
+ * Description:Estimate the prompted integer's factorial by performing Gosper's Algorithm
+ */
+ 
+int main ()
+{
+	int integer;
+	double answer;
+	print_cis1057_banner(5,"Gosper's Algorithm Calculator");
+	integer = prompt_and_return_integer("Enter a number");
+	answer = estimate_gospers_algorithm((double)integer);	
+	display_results(answer);
+return EXIT_SUCCESS;
+}
+/*
+ * Function: prompt_and_return_integer(const char *prompt)
+ * Inputs: prompt-an integer entered as a char 
+ * Outputs:*none*
+ * Globals:* none *
+ * Returns: int n- the prompted integers as an int
+ * Description: Takes an entered integer as a string and converts it to an int.
+ */
+int prompt_and_return_integer( const char *prompt )
+{	int n;
+	printf("%c", prompt);
+	scanf("%d", &n);
+	return n;
+}
+/*
+ * Function:estimate_gospers_algorithm(double findme)
+ * Inputs: findme- the returned integer n from prompt_and_return_integer
+ * Outputs: *None*
+ * Globals: PI-3.14159
+ * Returns: integer2-or the product of the prompted integer run as n within gosper's algorithm
+ * Description: Takes the prompted integer that was returned as an int and plugs it into gosper's algorithm
+ *		as n gosper's algorithm
+ */
+double estimate_gospers_algorithm(double findme)
+{
+	double x, partI, partII, inner, temp, number2, y, partIII;
+	partI = (pow(findme,findme));
+	partII = (exp(-findme));
+	x = (partI*partII);
+	partIII = ((2*findme+(1.0/3.0))*PI);
+	y = (sqrt(partIII));
+	number2 = (x*y);
+	return number2;
+}
+/*
+ * Function:display_results (const double answer2)
+ * Inputs: answer2-the returned integer2 from estimate_gospers_algorithm 
+ * Outputs:*none*
+ * Globals:* none *
+ * Returns: printf("The factorial of your integer is estimated:")
+ * Description: Displays the results of the Gosper's algorithm calculation
+ */
+void display_results (const double answer2)
+{	
+	printf("The factorial of your integer is estimated: \n %lf\n", answer2);
+}
+Script started on Wed 20 Feb 2019 03:16:24 PM EST
+]0;tuj22026@astro:~/lab5[?1034h[Wed Feb 20 15:16:24 [31mtuj22026@astro[0m:~/lab5 ] $ lscd $HOMEc lab5.c -lm[2Pnano lab5.ccd $HOME/lab5[6Plab5nano lab4.c[4Pcd lab4c lab6.calb6.clab6.c[2Pd lab4nano lab4.c[4Pcd lab5$HOME/lab5[2Pnano lab5.ccc lab5.c -lm[5Pd $HOMEls[K[K./a.out
+Lab# Assignment 5
+Gosper's Algorithm Calculator
+’3
+The factorial of your integer is estimated: 
+ 5.996133
+]0;tuj22026@astro:~/lab5[Wed Feb 20 15:16:45 [31mtuj22026@astro[0m:~/lab5 ] $ ./a.out
+Lab# Assignment 5
+Gosper's Algorithm Calculator
+’7
+The factorial of your integer is estimated: 
+ 5039.335351
+]0;tuj22026@astro:~/lab5[Wed Feb 20 15:16:50 [31mtuj22026@astro[0m:~/lab5 ] $ ./a.out
+Lab# Assignment 5
+Gosper's Algorithm Calculator
+’9
+The factorial of your integer is estimated: 
+ 362850.493547
+]0;tuj22026@astro:~/lab5[Wed Feb 20 15:16:55 [31mtuj22026@astro[0m:~/lab5 ] $ ./a.out
+Lab# Assignment 5
+Gosper's Algorithm Calculator
+’10
+The factorial of your integer is estimated: 
+ 3628559.292298
+]0;tuj22026@astro:~/lab5[Wed Feb 20 15:17:00 [31mtuj22026@astro[0m:~/lab5 ] $ ./a.out
+Lab# Assignment 5
+Gosper's Algorithm Calculator
+’15
+The factorial of your integer is estimated: 
+ 1307634827413.863525
+]0;tuj22026@astro:~/lab5[Wed Feb 20 15:17:07 [31mtuj22026@astro[0m:~/lab5 ] $ ./a.out
+Lab# Assignment 5
+Gosper's Algorithm Calculator
+’20
+The factorial of your integer is estimated: 
+ 2432859820521081856.000000
+]0;tuj22026@astro:~/lab5[Wed Feb 20 15:17:11 [31mtuj22026@astro[0m:~/lab5 ] $ ./a.out
+Lab# Assignment 5
+Gosper's Algorithm Calculator
+’70
+The factorial of your integer is estimated: 
+ 11978549758521930800616318063329834771811282593476540291180328281738637290233596146892948940808781824.000000
+]0;tuj22026@astro:~/lab5[Wed Feb 20 15:17:17 [31mtuj22026@astro[0m:~/lab5 ] $ ./a.out
+Lab# Assignment 5
+Gosper's Algorithm Calculator
+’1000
+The factorial of your integer is estimated: 
+ -nan
+]0;tuj22026@astro:~/lab5[Wed Feb 20 15:17:23 [31mtuj22026@astro[0m:~/lab5 ] $ exit
+exit
+
+Script done on Wed 20 Feb 2019 03:17:54 PM EST

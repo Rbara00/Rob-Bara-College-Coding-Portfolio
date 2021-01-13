@@ -1,0 +1,373 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+#include<string.h>
+#include "../include/cis1057.h"
+
+char *input_color_code( char *prompt, char band[4][7] );
+int input_band_colors(char band[4][7] );
+int calculate_resistance( char band[7]);
+double calculate_mult(int r3);
+double calculate_tolerances( int r4 );
+void results(char band[4][7]);
+const char COLOR_CODES[13] [7] = {"black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "grey", "white",
+				  "gold","silver","blank"};
+/*
+ * Location:Temple University Computer Science
+ * Programmer:Robert Bara
+ * Class:Introduction to C Programming 1057 Spring 2019 Section 004
+ * Assignment: Lab 9, Resistor calculator
+ * Date: April 12, 2019
+ * Version:1
+ * Description:The user enters the colors of 3 or 4 bands on a resistor and the resistance and tolerance are calculated.
+ */
+int main()
+{	int i,r1,r1a,r2, r2a, r3,r4;
+	double r,m, t,low,high,tol;
+	char b[4][7];
+	puts("Enter the colors of the resistorâ€™s three bands, staring with the one on the left.");
+	print_cis1057_banner(9,"Identifying Resistors");
+	while(i==0){
+		input_color_code("Band\t",b);
+		i = input_band_colors(b);
+	}
+	results(b);
+return EXIT_SUCCESS;
+}
+
+/*
+ * Function:*input_color_code
+ * Inputs:i-the counter to create an array of 4 bands that will be entered
+ *	  *prompt-what the user enters
+ * Outputs:*none*
+ * Globals:* none *
+ * Returns:band[i]-an array of 4 colors that the user entered that represents bands on a resistor
+ * Description:Prompts the user for to enter the colors of 4 bands on a resistor
+ */
+char *input_color_code(char *prompt, char band[4][7])
+{
+	int i;
+	for(i=0;i<4;i++){
+		printf("%d)%s",i+1,prompt);
+       		scanf("%s", &band[i]);
+       		printf("%s\n", band[i]);
+
+	}
+}
+
+/*
+ * Function:input_band_colors
+ * Inputs:i-counter for the first for loop
+ *	  j-counter for the second for loop to confirm if what we have entered is valid
+ *	  count-initilizes count as 0, count=4 if the colors are correct
+ * Outputs:*none*
+ * Globals:COLOR_CODES-the array of valid colors that is being compared to what is prompted.
+ * Returns:1-returns 1 when the colors are valid, therefore it exits the loop in main
+ *	   0-the colors are invalid and it goes back to the loop in main to reprompt for colors
+ * Description:Checks if the colors that are entered are valid, if not, it reprompts because of the for loop in main
+ */
+int input_band_colors(char band[4][7] )
+{	int i, j, count=0;
+	for (i=0; i<4; i++){
+		for(j=0; j<13; j++){
+			if( !strcmp(band[i],COLOR_CODES[j]))
+			{
+				count++;
+			}
+		}
+	}
+	if(count==4){
+		puts("The sweet release of death\n");
+		return 1;
+	}else{
+	 	puts("Bro do you even know how to color? (sorry if you are color blind)\nTry again:");
+		return 0;
+	}
+}
+
+/*
+ * Function:calculate_resistance
+ * Inputs:band[7]-the array of band
+ *	  i-the counter for the for loop
+ * Outputs:*none*
+ * Globals:COLOR_CODES-an array of colors to match what is prompted
+ * Returns:i-assigns the value of each color
+ *	   40-a garbage number that returns if somehow i>13
+ * Description:Assigns a number value based on what color is entered
+ */
+int calculate_resistance(char band[7])
+{
+	int i = 0;
+	for(i=0;i<13;i++){
+		if(strcmp(COLOR_CODES[i],band)==0){
+			return i;
+		}
+}
+	return 40;
+}
+
+/*
+ * Function:calculate_mult
+ * Inputs:r3-Band3's value
+ * Outputs:*none*
+ * Globals:* none *
+ * Returns:z-the multiplier that is based on band3
+ * Description:Calculates the multiplier based on the value of band3
+ */
+double calculate_mult(int r3)
+{ double z;
+	switch(r3)
+	{
+		case 0:
+			z=1;
+		break;
+		case 1:
+			z=10;
+		break;
+		case 2:
+			z=100;
+		break;
+		case 3:
+			z=1000;
+		break;
+		case 4:
+			z=10000;
+		break;
+		case 5:
+			z=100000;
+		break;
+		case 6:
+			z=1000000;
+		break;
+		case 7:
+			z=10000000;
+		break;
+		case 8:
+			z=100000000;
+		break;
+		case 9:
+			z=1000000000;
+		break;
+		case 10:
+			z=.1;
+		break;
+		case 11:
+			z=.01;
+		break;
+	}
+	return z;
+}
+/*
+ * Function:calculate_tolerances
+ * Inputs:r4-band4's value passed in to find the tolerance percent
+ * Outputs:*none*
+ * Globals:* none *
+ * Returns:q-the tolerance as a decimal
+ * Description:If band4's color gives a tolerance, q will become that tolerance, if there is not band or color that matches, 
+*	       the tolerance is 20%
+ */
+double calculate_tolerances( int r4)
+{
+	double q;
+	switch(r4)
+	{
+		case 1:
+			q=0.01;
+		break;
+		case 2:
+			q=0.02;
+		break;
+		case 5:
+			q=0.05;
+		break;
+		case 6:
+			q=0.25;
+		break;
+		case 7:
+			q=0.01;
+		break;
+		case 8:
+			q=0.005;
+		break;
+		case 10:
+			q=0.05;
+		break;
+		case 11:
+			q=0.10;
+		break;
+		default:
+			q=0.20;
+	}
+}
+
+/*
+ * Function:results
+ * Inputs:band[4][7]-the array of band colors that was entered by the user, being passed in.
+ * Outputs *none*
+ * Globals:* none *
+ * Returns:* none *
+ * Description:Prints the results, calculating the resistance and tolerance of this resistor.
+ */
+void results(char band[4][7])
+{	int r1,r1a,r2, r2a, r3,r4;
+        double r,m, t,low,high,tol;
+        r1=calculate_resistance(band[0]);
+        printf("The value of band 1 is %d\n",r1);
+        r1a=r1*10;
+        r2=calculate_resistance(band[1]);
+        printf("The value of band 2 is %d\n",r2);
+        r2a=r1a+r2;
+        r3=calculate_resistance(band[2]);
+        m=calculate_mult(r3);
+        printf("The value of band 3 is %d, so the multiplier is %.2lf or %.0E\n",r3,m,m);
+        r=r2a*m;
+        printf("The Resistance is: \n\t\t%.2lf or %.1E ohms.\n",r,r);
+        r4=calculate_resistance(band[3]);
+        t=calculate_tolerances(r4);
+        tol=t*100;
+        low=r-t;
+        high=r+t;
+        printf("Tolerance is: %.2lf%\nWith a low of\t%.2lf ohms.\nTo a high of\t%.2lf ohms.\n",tol,low,high);
+
+}
+
+Script started on Fri 12 Apr 2019 11:45:20 AM EDT
+]0;tuj22026@astro:~/lab9[?1034h[Fri Apr 12 11:45:20 [31mtuj22026@astro[0m:~/lab9 ] $ ./a.out
+Enter the colors of the resistorâ€™s three bands, staring with the one on the left.
+
+Lab# Assignment 9
+Identifying Resistors
+Compiled:	Apr 12 2019	11:43:56
+1)Band	fdsfds
+fdsfds
+2)Band	fdsk
+fdsk
+3)Band	shit
+shit
+4)Band	ahhhhh
+ahhhhh
+Bro do you even know how to color? (sorry if you are color blind)
+Try again:
+1)Band	red
+red
+2)Band	blue
+blue
+3)Band	green
+green
+4)Band	yellow
+yellow
+The sweet release of death
+
+The value of band 1 is 2
+The value of band 2 is 6
+The value of band 3 is 5, so the multiplier is 100000.00 or 1E+05
+The Resistance is: 
+		2600000.00 or 2.6E+06 ohms.
+Tolerance is: 20.00%
+With a low of	2599999.80 ohms.
+To a high of	2600000.20 ohms.
+]0;tuj22026@astro:~/lab9[Fri Apr 12 11:45:51 [31mtuj22026@astro[0m:~/lab9 ] $ ./a.outnano lab9.c[4P./a.out
+Enter the colors of the resistorâ€™s three bands, staring with the one on the left.
+
+Lab# Assignment 9
+Identifying Resistors
+Compiled:	Apr 12 2019	11:43:56
+1)Band	black
+black
+2)Band	grey
+grey
+3)Band	white
+white
+4)Band	gold
+gold
+The sweet release of death
+
+The value of band 1 is 0
+The value of band 2 is 8
+The value of band 3 is 9, so the multiplier is 1000000000.00 or 1E+09
+The Resistance is: 
+		8000000000.00 or 8.0E+09 ohms.
+Tolerance is: 5.00%
+With a low of	7999999999.95 ohms.
+To a high of	8000000000.05 ohms.
+]0;tuj22026@astro:~/lab9[Fri Apr 12 11:46:02 [31mtuj22026@astro[0m:~/lab9 ] $ ./a.out
+Enter the colors of the resistorâ€™s three bands, staring with the one on the left.
+
+Lab# Assignment 9
+Identifying Resistors
+Compiled:	Apr 12 2019	11:43:56
+1)Band	red
+red
+2)Band	blue
+blue
+3)Band	green
+green
+4)Band	black
+black
+The sweet release of death
+
+The value of band 1 is 2
+The value of band 2 is 6
+The value of band 3 is 5, so the multiplier is 100000.00 or 1E+05
+The Resistance is: 
+		2600000.00 or 2.6E+06 ohms.
+Tolerance is: 20.00%
+With a low of	2599999.80 ohms.
+To a high of	2600000.20 ohms.
+]0;tuj22026@astro:~/lab9[Fri Apr 12 11:46:16 [31mtuj22026@astro[0m:~/lab9 ] $ ./a.out
+Enter the colors of the resistorâ€™s three bands, staring with the one on the left.
+
+Lab# Assignment 9
+Identifying Resistors
+Compiled:	Apr 12 2019	11:43:56
+1)Band	brown
+brown
+2)Band	gre   whi   violet
+violet
+3)Band	red
+red
+4)Band	silver
+silver
+The sweet release of death
+
+The value of band 1 is 1
+The value of band 2 is 7
+The value of band 3 is 2, so the multiplier is 100.00 or 1E+02
+The Resistance is: 
+		1700.00 or 1.7E+03 ohms.
+Tolerance is: 10.00%
+With a low of	1699.90 ohms.
+To a high of	1700.10 ohms.
+]0;tuj22026@astro:~/lab9[Fri Apr 12 11:46:33 [31mtuj22026@astro[0m:~/lab9 ] $ ./a.out
+Enter the colors of the resistorâ€™s three bands, staring with the one on the left.
+
+Lab# Assignment 9
+Identifying Resistors
+Compiled:	Apr 12 2019	11:43:56
+1)Band	blue
+blue
+2)Band	yellow
+yellow
+3)Band	black
+black
+4)Band	orange
+orange
+The sweet release of death
+
+The value of band 1 is 6
+The value of band 2 is 4
+The value of band 3 is 0, so the multiplier is 1.00 or 1E+00
+The Resistance is: 
+		64.00 or 6.4E+01 ohms.
+Tolerance is: 20.00%
+With a low of	63.80 ohms.
+To a high of	64.20 ohms.
+]0;tuj22026@astro:~/lab9[Fri Apr 12 11:47:36 [31mtuj22026@astro[0m:~/lab9 ] $ c[Kscript
+Script started, file is typescript
+]0;tuj22026@astro:~/lab9[?1034h[Fri Apr 12 11:47:39 [31mtuj22026@astro[0m:~/lab9 ] $ exit
+exit
+Script done, file is typescript
+]0;tuj22026@astro:~/lab9[Fri Apr 12 11:47:43 [31mtuj22026@astro[0m:~/lab9 ] $ exit
+exit
+
+Script done on Fri 12 Apr 2019 11:47:45 AM EDT

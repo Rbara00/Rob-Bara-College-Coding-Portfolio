@@ -1,0 +1,3956 @@
+PROGRAM:
+
+  1 #include<stdio.h>
+  2 #include<stdlib.h>
+  3 #include<string.h>
+  4 #include<ctype.h>
+  5 #include"../include/cis1057.h"
+  6
+  7 char *Get_File(char *prompt,char a[100]);
+  8 void valid_file(FILE*inp);
+  9 char *punc(char *phrase);
+ 10
+ 11 /*
+ 12  * Location:Temple University Computer Science
+ 13  * Programmer:Robert Bara
+ 14  * Class:Introduction to C Programming 1057 Spring 2019 Section 004
+ 15  * Assignment: Text Files
+ 16  * Date:April 26,2019
+ 17  * Version:1
+ 18  * Description:Reads in text files and sorts the words alphabetically to print on each line
+ 19  */
+ 20 int main()
+ 21 {       int i;
+ 22         char f[100];
+ 23         char word[100];
+ 24         int count=0;
+ 25         int letters=0;
+ 26         FILE*inp,
+ 27             *outp;
+ 28         print_cis1057_banner(10,"Text Files stuff");
+ 29         Get_File("Enter a File:",f);
+ 30         printf("%s\n",f);
+ 31         inp=(fopen(f,"r"));
+ 32         outp=(fopen("Num_words.txt","w+"));
+ 33         valid_file(inp);
+ 34         puts("Each word, followed by the length can be found in the output file");
+ 35         fputs("EVERY WORD, FOLLOWED BY THE LENGTH OF THE WORD, NO PUNCTUATION:\n",outp);
+ 36                 while (fscanf(inp,"%s\n",word) != EOF)
+ 37                 {       letters=strlen(word);
+ 38                         strcpy(word,punc(word));
+ 39                         if (letters!=0){
+ 40                                 //printf("%s\t%d\n",word,letters);
+ 41                                 fprintf(outp,"%s\t%d\n",word,letters);
+ 42                                 count++;
+ 43                         }
+ 44                 }
+ 45         fprintf(outp,"Word count=\t%d\n",count);
+ 46         printf("Word count=\t%d\n",count);
+ 47         fclose(inp);
+ 48         fclose(outp);
+ 49 return (EXIT_SUCCESS);
+ 50 }
+ 51
+ 52 /*
+ 53  * Function: *Get_File
+ 54  * Inputs:*prompt-the user enters the name of the file
+ 55  * Outputs:*none*
+ 56  * Globals:* none *
+ 57  * Returns:a-the a string of 100 characters max, that will be the file name
+ 58  * Description:The user enters the name of a file to be opened with a file pointer
+ 59  */
+ 60 char *Get_File(char *prompt,char a[100])
+ 61 {
+ 62         printf("%s\n",prompt);
+ 63         scanf("%[^\n]s", a);
+ 64 }
+ 65
+ 66 /*
+ 67  * Function:valid_file
+ 68  * Inputs:*inp-A pointer to the inputed file
+ 69  * Outputs:*none*
+ 70  * Globals:NULL-comes from header file and means \0
+ 71  * Returns:* none *
+ 72  * Description:Identifies if the inputted text file is valid, if not the program terminates
+ 73  */
+ 74 void valid_file(FILE*inp)
+ 75 {
+ 76         if(inp==NULL)
+ 77         {
+ 78                 puts("Invalid File\n");
+ 79                 exit(EXIT_FAILURE);
+ 80         }
+ 81 }
+ 82
+ 83 /*
+ 84  * Function:*punc
+ 85  * Inputs:char *phrase-pointer to the original words with punctuation being passed in
+ 86  * Outputs:*none*
+ 87  * Globals:* none *
+ 88  * Returns:phrase-the new lines of words without any punctuation
+ 89  * Description:Gets rid of any punctuation in the document
+ 90  */
+ 91 char *punc(char *phrase)
+ 92 {       int i;
+ 93         for(i=strlen(phrase);i>0;--i)
+ 94         {
+ 95                 if(phrase[i]=='-') //This is a dash - , not a hyphen –
+ 96                 {
+ 97                         phrase[i]='\0';
+ 98                 }
+ 99                 if(ispunct(phrase[i]))
+100                 {
+101                         phrase[i]='\0';
+102                 }
+103         }
+104
+105 return phrase;
+106
+107 }
+108
+
+GETTYSBURG ADDRESS: 
+SCRIPT:
+Lab# Assignment 10
+Text Files stuff
+Compiled:       Apr 26 2019     15:57:30
+Enter a File:
+Gettysburg Address2.txt
+Gettysburg Address2.txt
+Each word, followed by the length can be found in the output file
+Word count=     262
+[Fri Apr 26 15:57:40 tuj22026@astro:~/lab10 ] $
+
+OUTPUT FILE Num_words.txt
+
+ 1 EVERY WORD, FOLLOWED BY THE LENGTH OF THE WORD, NO PUNCTUATION:
+  2 Fourscore       9
+  3 and     3
+  4 seven   5
+  5 years   5
+  6 ago     3
+  7 our     3
+  8 fathers 7
+  9 brought 7
+ 10 forth   6
+ 11 on      2
+ 12 this    4
+ 13 continent       10
+ 14 a       1
+ 15 new     3
+ 16 nation  7
+ 17 conceived       9
+ 18 in      2
+ 19 liberty 8
+ 20 and     3
+ 21 dedicated       9
+ 22 to      2
+ 23 the     3
+ 24 proposition     11
+ 25 that    4
+ 26 all     3
+ 27 men     3
+ 28 are     3
+ 29 created 7
+ 30 equal   6
+ 31 Now     3
+ 32 we      2
+ 33 are     3
+ 34 engaged 7
+ 35 in      2
+ 36 a       1
+ 37 great   5
+ 38 civil   5
+ 39 war     4
+ 40 testing 7
+ 41 whether 7
+ 42 that    4
+ 43 nation  7
+ 44 or      2
+ 45 any     3
+ 46 nation  6
+ 47 so      2
+ 48 conceived       10
+ 49 and     3
+ 50 so      2
+ 51 dedicated       10
+ 52 can     3
+ 53 long    4
+ 54 endure  7
+ 55 We      2
+ 56 are     3
+ 57 met     3
+ 58 on      2
+ 59 a       1
+ 60 great   5
+ 61 battle  12
+ 62 of      2
+ 63 that    4
+ 64 war     4
+ 65 We      2
+ 66 have    4
+ 67 come    4
+ 68 to      2
+ 69 dedicate        8
+ 70 a       1
+ 71 portion 7
+ 72 of      2
+ 73 that    4
+ 74 field   6
+ 75 as      2
+ 76 a       1
+ 77 final   5
+ 78 resting 13
+ 79 for     3
+ 80 those   5
+ 81 who     3
+ 82 here    4
+ 83 gave    4
+ 84 their   5
+ 85 lives   6
+ 86 that    4
+ 87 that    4
+ 88 nation  6
+ 89 might   5
+ 90 live    5
+ 91 It      2
+ 92 is      2
+ 93 altogether      10
+ 94 fitting 7
+ 95 and     3
+ 96 proper  6
+ 97 that    4
+ 98 we      2
+ 99 should  6
+100 do      2
+101 this    5
+102 But     4
+103 in      2
+104 a       1
+105 larger  6
+106 sense   6
+107 we      2
+108 cannot  6
+109 dedicate        9
+110 we      2
+111 cannot  6
+112 consecrate      13
+113 cannot  6
+114 hallow  11
+115 ground  7
+116 The     3
+117 brave   5
+118 men     4
+119 living  6
+120 and     3
+121 dead    5
+122 who     3
+123 struggled       9
+124 here    5
+125 have    4
+126 consecrated     11
+127 it      2
+128 far     3
+129 above   5
+130 our     3
+131 poor    4
+132 power   5
+133 to      2
+134 add     3
+135 or      2
+136 detract 8
+137 The     3
+138 world   5
+139 will    4
+140 little  6
+141 note    5
+142 nor     3
+143 long    4
+144 remember        8
+145 what    4
+146 we      2
+147 say     3
+148 here    5
+149 but     3
+150 it      2
+151 can     3
+152 never   5
+153 forget  6
+154 what    4
+155 they    4
+156 did     3
+157 here    5
+158 It      2
+159 is      2
+160 for     3
+161 us      2
+162 the     3
+163 living  7
+164 rather  7
+165 to      2
+166 be      2
+167 dedicated       9
+168 here    4
+169 to      2
+170 the     3
+171 unfinished      10
+172 work    4
+173 which   5
+174 they    4
+175 who     3
+176 fought  6
+177 here    4
+178 have    4
+179 thus    4
+180 far     3
+181 so      2
+182 nobly   5
+183 advanced        9
+184 It      2
+185 is      2
+186 rather  6
+187 for     3
+188 us      2
+189 to      2
+190 be      2
+191 here    4
+192 dedicated       9
+193 to      2
+194 the     3
+195 great   5
+196 task    4
+197 remaining       9
+198 before  6
+199 us      7
+200 from    4
+201 these   5
+202 honored 7
+203 dead    4
+204 we      2
+205 take    4
+206 increased       9
+207 devotion        8
+208 to      2
+209 that    4
+210 cause   5
+211 for     3
+212 which   5
+213 they    4
+214 here    4
+215 gave    4
+216 the     3
+217 last    4
+218 full    4
+219 measure 7
+220 of      2
+221 devotion        13
+222 we      2
+223 here    4
+224 highly  6
+225 resolve 7
+226 that    4
+227 these   5
+228 dead    4
+229 shall   5
+230 not     3
+231 have    4
+232 died    4
+233 in      2
+234 vain    9
+235 this    4
+236 nation  7
+237 under   5
+238 God     4
+239 shall   5
+240 have    4
+241 a       1
+242 new     3
+243 birth   5
+244 of      2
+245 freedom 8
+246 and     3
+247 that    4
+248 government      10
+249 of      2
+250 the     3
+251 people  7
+252 by      2
+253 the     3
+254 people  7
+255 for     3
+256 the     3
+257 people  7
+258 shall   5
+259 not     3
+260 perish  6
+261 from    4
+262 the     3
+263 earth   6
+264 Word count=     262
+265
+
+SCRIPT FOR DECLARATION OF INDEPENDENCE.txt
+
+Lab# Assignment 10
+Text Files stuff
+Compiled:       Apr 26 2019     15:57:30
+Enter a File:
+Declaration of Independence.txt
+Declaration of Independence.txt
+Each word, followed by the length can be found in the output file
+Word count=     1326
+[Fri Apr 26 16:00:46 tuj22026@astro:~/lab10 ] $
+
+OUTPUT FOR DECLARATION OF INDEPENDENCE.TXT
+   1 EVERY WORD, FOLLOWED BY THE LENGTH OF THE WORD, NO PUNCTUATION:
+   2 When    4
+   3 in      2
+   4 the     3
+   5 Course  6
+   6 of      2
+   7 human   5
+   8 events  6
+   9 it      2
+  10 becomes 7
+  11 necessary       9
+  12 for     3
+  13 one     3
+  14 people  6
+  15 to      2
+  16 dissolve        8
+  17 the     3
+  18 political       9
+  19 bands   5
+  20 which   5
+  21 have    4
+  22 connected       9
+  23 them    4
+  24 with    4
+  25 another 7
+  26 and     3
+  27 to      2
+  28 assume  6
+  29 among   5
+  30 the     3
+  31 powers  6
+  32 of      2
+  33 the     3
+  34 earth   6
+  35 the     3
+  36 separate        8
+  37 and     3
+  38 equal   5
+  39 station 7
+  40 to      2
+  41 which   5
+  42 the     3
+  43 Laws    4
+  44 of      2
+  45 Nature  6
+  46 and     3
+  47 of      2
+  48 Nature  8
+  49 God     3
+  50 entitle 7
+  51 them    5
+  52 a       1
+  53 decent  6
+  54 respect 7
+  55 to      2
+  56 the     3
+  57 opinions        8
+  58 of      2
+  59 mankind 7
+  60 requires        8
+  61 that    4
+  62 they    4
+  63 should  6
+  64 declare 7
+  65 the     3
+  66 causes  6
+  67 which   5
+  68 impel   5
+  69 them    4
+  70 to      2
+  71 the     3
+  72 separation      11
+  73 We      2
+  74 hold    4
+  75 these   5
+  76 truths  6
+  77 to      2
+  78 be      2
+  79 self    13
+  80 that    4
+  81 all     3
+  82 men     3
+  83 are     3
+  84 created 7
+  85 equal   6
+  86 that    4
+  87 they    4
+  88 are     3
+  89 endowed 7
+  90 by      2
+  91 their   5
+  92 Creator 7
+  93 with    4
+  94 certain 7
+  95 unalienable     11
+  96 Rights  7
+  97 that    4
+  98 among   5
+  99 these   5
+ 100 are     3
+ 101 Life    5
+ 102 Liberty 7
+ 103 and     3
+ 104 the     3
+ 105 pursuit 7
+ 106 of      2
+ 107 Happiness       10
+ 108 —       3
+ 109 That    4
+ 110 to      2
+ 111 secure  6
+ 112 these   5
+ 113 rights  7
+ 114 Governments     11
+ 115 are     3
+ 116 instituted      10
+ 117 among   5
+ 118 Men     4
+ 119 deriving        8
+ 120 their   5
+ 121 just    4
+ 122 powers  6
+ 123 from    4
+ 124 the     3
+ 125 consent 7
+ 126 of      2
+ 127 the     3
+ 128 governed        9
+ 129 —       3
+ 130 That    4
+ 131 whenever        8
+ 132 any     3
+ 133 Form    4
+ 134 of      2
+ 135 Government      10
+ 136 becomes 7
+ 137 destructive     11
+ 138 of      2
+ 139 these   5
+ 140 ends    5
+ 141 it      2
+ 142 is      2
+ 143 the     3
+ 144 Right   5
+ 145 of      2
+ 146 the     3
+ 147 People  6
+ 148 to      2
+ 149 alter   5
+ 150 or      2
+ 151 to      2
+ 152 abolish 7
+ 153 it      3
+ 154 and     3
+ 155 to      2
+ 156 institute       9
+ 157 new     3
+ 158 Government      11
+ 159 laying  6
+ 160 its     3
+ 161 foundation      10
+ 162 on      2
+ 163 such    4
+ 164 principles      10
+ 165 and     3
+ 166 organizing      10
+ 167 its     3
+ 168 powers  6
+ 169 in      2
+ 170 such    4
+ 171 form    5
+ 172 as      2
+ 173 to      2
+ 174 them    4
+ 175 shall   5
+ 176 seem    4
+ 177 most    4
+ 178 likely  6
+ 179 to      2
+ 180 effect  6
+ 181 their   5
+ 182 Safety  6
+ 183 and     3
+ 184 Happiness       10
+ 185 Prudence        9
+ 186 indeed  7
+ 187 will    4
+ 188 dictate 7
+ 189 that    4
+ 190 Governments     11
+ 191 long    4
+ 192 established     11
+ 193 should  6
+ 194 not     3
+ 195 be      2
+ 196 changed 7
+ 197 for     3
+ 198 light   5
+ 199 and     3
+ 200 transient       9
+ 201 causes  7
+ 202 and     3
+ 203 accordingly     11
+ 204 all     3
+ 205 experience      10
+ 206 hath    4
+ 207 shewn   5
+ 208 that    4
+ 209 mankind 7
+ 210 are     3
+ 211 more    4
+ 212 disposed        8
+ 213 to      2
+ 214 suffer  7
+ 215 while   5
+ 216 evils   5
+ 217 are     3
+ 218 sufferable      10
+ 219 than    4
+ 220 to      2
+ 221 right   5
+ 222 themselves      10
+ 223 by      2
+ 224 abolishing      10
+ 225 the     3
+ 226 forms   5
+ 227 to      2
+ 228 which   5
+ 229 they    4
+ 230 are     3
+ 231 accustomed      11
+ 232 But     3
+ 233 when    4
+ 234 a       1
+ 235 long    4
+ 236 train   5
+ 237 of      2
+ 238 abuses  6
+ 239 and     3
+ 240 usurpations     12
+ 241 pursuing        8
+ 242 invariably      10
+ 243 the     3
+ 244 same    4
+ 245 Object  6
+ 246 evinces 7
+ 247 a       1
+ 248 design  6
+ 249 to      2
+ 250 reduce  6
+ 251 them    4
+ 252 under   5
+ 253 absolute        8
+ 254 Despotism       10
+ 255 it      2
+ 256 is      2
+ 257 their   5
+ 258 right   6
+ 259 it      2
+ 260 is      2
+ 261 their   5
+ 262 duty    5
+ 263 to      2
+ 264 throw   5
+ 265 off     3
+ 266 such    4
+ 267 Government      11
+ 268 and     3
+ 269 to      2
+ 270 provide 7
+ 271 new     3
+ 272 Guards  6
+ 273 for     3
+ 274 their   5
+ 275 future  6
+ 276 security        9
+ 277 —       3
+ 278 Such    4
+ 279 has     3
+ 280 been    4
+ 281 the     3
+ 282 patient 7
+ 283 sufferance      10
+ 284 of      2
+ 285 these   5
+ 286 Colonies        9
+ 287 and     3
+ 288 such    4
+ 289 is      2
+ 290 now     3
+ 291 the     3
+ 292 necessity       9
+ 293 which   5
+ 294 constrains      10
+ 295 them    4
+ 296 to      2
+ 297 alter   5
+ 298 their   5
+ 299 former  6
+ 300 Systems 7
+ 301 of      2
+ 302 Government      11
+ 303 The     3
+ 304 history 7
+ 305 of      2
+ 306 the     3
+ 307 present 7
+ 308 King    4
+ 309 of      2
+ 310 Great   5
+ 311 Britain 7
+ 312 is      2
+ 313 a       1
+ 314 history 7
+ 315 of      2
+ 316 repeated        8
+ 317 injuries        8
+ 318 and     3
+ 319 usurpations     12
+ 320 all     3
+ 321 having  6
+ 322 in      2
+ 323 direct  6
+ 324 object  6
+ 325 the     3
+ 326 establishment   13
+ 327 of      2
+ 328 an      2
+ 329 absolute        8
+ 330 Tyranny 7
+ 331 over    4
+ 332 these   5
+ 333 States  7
+ 334 To      2
+ 335 prove   5
+ 336 this    5
+ 337 let     3
+ 338 Facts   5
+ 339 be      2
+ 340 submitted       9
+ 341 to      2
+ 342 a       1
+ 343 candid  6
+ 344 world   6
+ 345 He      2
+ 346 has     3
+ 347 refused 7
+ 348 his     3
+ 349 Assent  6
+ 350 to      2
+ 351 Laws    5
+ 352 the     3
+ 353 most    4
+ 354 wholesome       9
+ 355 and     3
+ 356 necessary       9
+ 357 for     3
+ 358 the     3
+ 359 public  6
+ 360 good    5
+ 361 He      2
+ 362 has     3
+ 363 forbidden       9
+ 364 his     3
+ 365 Governors       9
+ 366 to      2
+ 367 pass    4
+ 368 Laws    4
+ 369 of      2
+ 370 immediate       9
+ 371 and     3
+ 372 pressing        8
+ 373 importance      11
+ 374 unless  6
+ 375 suspended       9
+ 376 in      2
+ 377 their   5
+ 378 operation       9
+ 379 till    4
+ 380 his     3
+ 381 Assent  6
+ 382 should  6
+ 383 be      2
+ 384 obtained        9
+ 385 and     3
+ 386 when    4
+ 387 so      2
+ 388 suspended       10
+ 389 he      2
+ 390 has     3
+ 391 utterly 7
+ 392 neglected       9
+ 393 to      2
+ 394 attend  6
+ 395 to      2
+ 396 them    5
+ 397 He      2
+ 398 has     3
+ 399 refused 7
+ 400 to      2
+ 401 pass    4
+ 402 other   5
+ 403 Laws    4
+ 404 for     3
+ 405 the     3
+ 406 accommodation   13
+ 407 of      2
+ 408 large   5
+ 409 districts       9
+ 410 of      2
+ 411 people  7
+ 412 unless  6
+ 413 those   5
+ 414 people  6
+ 415 would   5
+ 416 relinquish      10
+ 417 the     3
+ 418 right   5
+ 419 of      2
+ 420 Representation  14
+ 421 in      2
+ 422 the     3
+ 423 Legislature     12
+ 424 a       1
+ 425 right   5
+ 426 inestimable     11
+ 427 to      2
+ 428 them    4
+ 429 and     3
+ 430 formidable      10
+ 431 to      2
+ 432 tyrants 7
+ 433 only    5
+ 434 He      2
+ 435 has     3
+ 436 called  6
+ 437 together        8
+ 438 legislative     11
+ 439 bodies  6
+ 440 at      2
+ 441 places  6
+ 442 unusual 8
+ 443 uncomfortable   14
+ 444 and     3
+ 445 distant 7
+ 446 from    4
+ 447 the     3
+ 448 depository      10
+ 449 of      2
+ 450 their   5
+ 451 Public  6
+ 452 Records 8
+ 453 for     3
+ 454 the     3
+ 455 sole    4
+ 456 purpose 7
+ 457 of      2
+ 458 fatiguing       9
+ 459 them    4
+ 460 into    4
+ 461 compliance      10
+ 462 with    4
+ 463 his     3
+ 464 measures        9
+ 465 He      2
+ 466 has     3
+ 467 dissolved       9
+ 468 Representative  14
+ 469 Houses  6
+ 470 repeatedly      11
+ 471 for     3
+ 472 opposing        8
+ 473 with    4
+ 474 manly   5
+ 475 firmness        8
+ 476 his     3
+ 477 invasions       9
+ 478 on      2
+ 479 the     3
+ 480 rights  6
+ 481 of      2
+ 482 the     3
+ 483 people  7
+ 484 He      2
+ 485 has     3
+ 486 refused 7
+ 487 for     3
+ 488 a       1
+ 489 long    4
+ 490 time    5
+ 491 after   5
+ 492 such    4
+ 493 dissolutions    13
+ 494 to      2
+ 495 cause   5
+ 496 others  6
+ 497 to      2
+ 498 be      2
+ 499 elected 8
+ 500 whereby 7
+ 501 the     3
+ 502 Legislative     11
+ 503 Powers  7
+ 504 incapable       9
+ 505 of      2
+ 506 Annihilation    13
+ 507 have    4
+ 508 returned        8
+ 509 to      2
+ 510 the     3
+ 511 People  6
+ 512 at      2
+ 513 large   5
+ 514 for     3
+ 515 their   5
+ 516 exercise        9
+ 517 the     3
+ 518 State   5
+ 519 remaining       9
+ 520 in      2
+ 521 the     3
+ 522 mean    4
+ 523 time    4
+ 524 exposed 7
+ 525 to      2
+ 526 all     3
+ 527 the     3
+ 528 dangers 7
+ 529 of      2
+ 530 invasion        8
+ 531 from    4
+ 532 without 8
+ 533 and     3
+ 534 convulsions     11
+ 535 within  7
+ 536 He      2
+ 537 has     3
+ 538 endeavoured     11
+ 539 to      2
+ 540 prevent 7
+ 541 the     3
+ 542 population      10
+ 543 of      2
+ 544 these   5
+ 545 States  7
+ 546 for     3
+ 547 that    4
+ 548 purpose 7
+ 549 obstructing     11
+ 550 the     3
+ 551 Laws    4
+ 552 for     3
+ 553 Naturalization  14
+ 554 of      2
+ 555 Foreigners      11
+ 556 refusing        8
+ 557 to      2
+ 558 pass    4
+ 559 others  6
+ 560 to      2
+ 561 encourage       9
+ 562 their   5
+ 563 migrations      10
+ 564 hither  7
+ 565 and     3
+ 566 raising 7
+ 567 the     3
+ 568 conditions      10
+ 569 of      2
+ 570 new     3
+ 571 Appropriations  14
+ 572 of      2
+ 573 Lands   6
+ 574 He      2
+ 575 has     3
+ 576 obstructed      10
+ 577 the     3
+ 578 Administration  14
+ 579 of      2
+ 580 Justice 7
+ 581 by      2
+ 582 refusing        8
+ 583 his     3
+ 584 Assent  6
+ 585 to      2
+ 586 Laws    4
+ 587 for     3
+ 588 establishing    12
+ 589 Judiciary       9
+ 590 Powers  7
+ 591 He      2
+ 592 has     3
+ 593 made    4
+ 594 Judges  6
+ 595 dependent       9
+ 596 on      2
+ 597 his     3
+ 598 Will    4
+ 599 alone   5
+ 600 for     3
+ 601 the     3
+ 602 tenure  6
+ 603 of      2
+ 604 their   5
+ 605 offices 8
+ 606 and     3
+ 607 the     3
+ 608 amount  6
+ 609 and     3
+ 610 payment 7
+ 611 of      2
+ 612 their   5
+ 613 salaries        9
+ 614 He      2
+ 615 has     3
+ 616 erected 7
+ 617 a       1
+ 618 multitude       9
+ 619 of      2
+ 620 New     3
+ 621 Offices 8
+ 622 and     3
+ 623 sent    4
+ 624 hither  6
+ 625 swarms  6
+ 626 of      2
+ 627 Officers        8
+ 628 to      2
+ 629 harass  6
+ 630 our     3
+ 631 people  6
+ 632 and     3
+ 633 eat     3
+ 634 out     3
+ 635 their   5
+ 636 substance       10
+ 637 He      2
+ 638 has     3
+ 639 kept    4
+ 640 among   5
+ 641 us      3
+ 642 in      2
+ 643 times   5
+ 644 of      2
+ 645 peace   6
+ 646 Standing        8
+ 647 Armies  6
+ 648 without 7
+ 649 the     3
+ 650 Consent 7
+ 651 of      2
+ 652 our     3
+ 653 legislatures    13
+ 654 He      2
+ 655 has     3
+ 656 affected        8
+ 657 to      2
+ 658 render  6
+ 659 the     3
+ 660 Military        8
+ 661 independent     11
+ 662 of      2
+ 663 and     3
+ 664 superior        8
+ 665 to      2
+ 666 the     3
+ 667 Civil   5
+ 668 Power   6
+ 669 He      2
+ 670 has     3
+ 671 combined        8
+ 672 with    4
+ 673 others  6
+ 674 to      2
+ 675 subject 7
+ 676 us      2
+ 677 to      2
+ 678 a       1
+ 679 jurisdiction    12
+ 680 foreign 7
+ 681 to      2
+ 682 our     3
+ 683 constitution    13
+ 684 and     3
+ 685 unacknowledged  14
+ 686 by      2
+ 687 our     3
+ 688 laws    5
+ 689 giving  6
+ 690 his     3
+ 691 Assent  6
+ 692 to      2
+ 693 their   5
+ 694 Acts    4
+ 695 of      2
+ 696 pretended       9
+ 697 Legislation     12
+ 698 For     3
+ 699 quartering      10
+ 700 large   5
+ 701 bodies  6
+ 702 of      2
+ 703 armed   5
+ 704 troops  6
+ 705 among   5
+ 706 us      3
+ 707 For     3
+ 708 protecting      10
+ 709 them    5
+ 710 by      2
+ 711 a       1
+ 712 mock    4
+ 713 Trial   5
+ 714 from    4
+ 715 punishment      10
+ 716 for     3
+ 717 any     3
+ 718 Murders 7
+ 719 which   5
+ 720 they    4
+ 721 should  6
+ 722 commit  6
+ 723 on      2
+ 724 the     3
+ 725 Inhabitants     11
+ 726 of      2
+ 727 these   5
+ 728 States  7
+ 729 For     3
+ 730 cutting 7
+ 731 off     3
+ 732 our     3
+ 733 Trade   5
+ 734 with    4
+ 735 all     3
+ 736 parts   5
+ 737 of      2
+ 738 the     3
+ 739 world   6
+ 740 For     3
+ 741 imposing        8
+ 742 Taxes   5
+ 743 on      2
+ 744 us      2
+ 745 without 7
+ 746 our     3
+ 747 Consent 8
+ 748 For     3
+ 749 depriving       9
+ 750 us      2
+ 751 in      2
+ 752 many    4
+ 753 cases   6
+ 754 of      2
+ 755 the     3
+ 756 benefit 7
+ 757 of      2
+ 758 Trial   5
+ 759 by      2
+ 760 Jury    5
+ 761 For     3
+ 762 transporting    12
+ 763 us      2
+ 764 beyond  6
+ 765 Seas    4
+ 766 to      2
+ 767 be      2
+ 768 tried   5
+ 769 for     3
+ 770 pretended       9
+ 771 offences        9
+ 772 For     3
+ 773 abolishing      10
+ 774 the     3
+ 775 free    4
+ 776 System  6
+ 777 of      2
+ 778 English 7
+ 779 Laws    4
+ 780 in      2
+ 781 a       1
+ 782 neighbouring    12
+ 783 Province        9
+ 784 establishing    12
+ 785 therein 7
+ 786 an      2
+ 787 Arbitrary       9
+ 788 government      11
+ 789 and     3
+ 790 enlarging       9
+ 791 its     3
+ 792 Boundaries      10
+ 793 so      2
+ 794 as      2
+ 795 to      2
+ 796 render  6
+ 797 it      2
+ 798 at      2
+ 799 once    4
+ 800 an      2
+ 801 example 7
+ 802 and     3
+ 803 fit     3
+ 804 instrument      10
+ 805 for     3
+ 806 introducing     11
+ 807 the     3
+ 808 same    4
+ 809 absolute        8
+ 810 rule    4
+ 811 into    4
+ 812 these   5
+ 813 Colonies        8
+ 814 For     3
+ 815 taking  6
+ 816 away    4
+ 817 our     3
+ 818 Charters        9
+ 819 abolishing      10
+ 820 our     3
+ 821 most    4
+ 822 valuable        8
+ 823 Laws    4
+ 824 and     3
+ 825 altering        8
+ 826 fundamentally   13
+ 827 the     3
+ 828 Forms   5
+ 829 of      2
+ 830 our     3
+ 831 Governments     12
+ 832 For     3
+ 833 suspending      10
+ 834 our     3
+ 835 own     3
+ 836 Legislatures    13
+ 837 and     3
+ 838 declaring       9
+ 839 themselves      10
+ 840 invested        8
+ 841 with    4
+ 842 power   5
+ 843 to      2
+ 844 legislate       9
+ 845 for     3
+ 846 us      2
+ 847 in      2
+ 848 all     3
+ 849 cases   5
+ 850 whatsoever      11
+ 851 He      2
+ 852 has     3
+ 853 abdicated       9
+ 854 Government      10
+ 855 here    5
+ 856 by      2
+ 857 declaring       9
+ 858 us      2
+ 859 out     3
+ 860 of      2
+ 861 his     3
+ 862 Protection      10
+ 863 and     3
+ 864 waging  6
+ 865 War     3
+ 866 against 7
+ 867 us      3
+ 868 He      2
+ 869 has     3
+ 870 plundered       9
+ 871 our     3
+ 872 seas    5
+ 873 ravaged 7
+ 874 our     3
+ 875 coasts  7
+ 876 burnt   5
+ 877 our     3
+ 878 towns   6
+ 879 and     3
+ 880 destroyed       9
+ 881 the     3
+ 882 lives   5
+ 883 of      2
+ 884 our     3
+ 885 people  7
+ 886 He      2
+ 887 is      2
+ 888 at      2
+ 889 this    4
+ 890 time    4
+ 891 transporting    12
+ 892 large   5
+ 893 Armies  6
+ 894 of      2
+ 895 foreign 7
+ 896 Mercenaries     11
+ 897 to      2
+ 898 compleat        8
+ 899 the     3
+ 900 works   5
+ 901 of      2
+ 902 death   6
+ 903 desolation      11
+ 904 and     3
+ 905 tyranny 8
+ 906 already 7
+ 907 begun   5
+ 908 with    4
+ 909 circumstances   13
+ 910 of      2
+ 911 Cruelty 7
+ 912 &       1
+ 913 Perfidy 7
+ 914 scarcely        8
+ 915 paralleled      10
+ 916 in      2
+ 917 the     3
+ 918 most    4
+ 919 barbarous       9
+ 920 ages    5
+ 921 and     3
+ 922 totally 7
+ 923 unworthy        8
+ 924 the     3
+ 925 Head    4
+ 926 of      2
+ 927 a       1
+ 928 civilized       9
+ 929 nation  7
+ 930 He      2
+ 931 has     3
+ 932 constrained     11
+ 933 our     3
+ 934 fellow  6
+ 935 Citizens        8
+ 936 taken   5
+ 937 Captive 7
+ 938 on      2
+ 939 the     3
+ 940 high    4
+ 941 Seas    4
+ 942 to      2
+ 943 bear    4
+ 944 Arms    4
+ 945 against 7
+ 946 their   5
+ 947 Country 8
+ 948 to      2
+ 949 become  6
+ 950 the     3
+ 951 executioners    12
+ 952 of      2
+ 953 their   5
+ 954 friends 7
+ 955 and     3
+ 956 Brethren        9
+ 957 or      2
+ 958 to      2
+ 959 fall    4
+ 960 themselves      10
+ 961 by      2
+ 962 their   5
+ 963 Hands   6
+ 964 He      2
+ 965 has     3
+ 966 excited 7
+ 967 domestic        8
+ 968 insurrections   13
+ 969 amongst 7
+ 970 us      3
+ 971 and     3
+ 972 has     3
+ 973 endeavoured     11
+ 974 to      2
+ 975 bring   5
+ 976 on      2
+ 977 the     3
+ 978 inhabitants     11
+ 979 of      2
+ 980 our     3
+ 981 frontiers       10
+ 982 the     3
+ 983 merciless       9
+ 984 Indian  6
+ 985 Savages 7
+ 986 whose   5
+ 987 known   5
+ 988 rule    4
+ 989 of      2
+ 990 warfare 8
+ 991 is      2
+ 992 an      2
+ 993 undistinguished 15
+ 994 destruction     11
+ 995 of      2
+ 996 all     3
+ 997 ages    5
+ 998 sexes   5
+ 999 and     3
+1000 conditions      11
+1001 In      2
+1002 every   5
+1003 stage   5
+1004 of      2
+1005 these   5
+1006 Oppressions     11
+1007 We      2
+1008 have    4
+1009 Petitioned      10
+1010 for     3
+1011 Redress 7
+1012 in      2
+1013 the     3
+1014 most    4
+1015 humble  6
+1016 terms   6
+1017 Our     3
+1018 repeated        8
+1019 Petitions       9
+1020 have    4
+1021 been    4
+1022 answered        8
+1023 only    4
+1024 by      2
+1025 repeated        8
+1026 injury  7
+1027 A       1
+1028 Prince  7
+1029 whose   5
+1030 character       9
+1031 is      2
+1032 thus    4
+1033 marked  6
+1034 by      2
+1035 every   5
+1036 act     3
+1037 which   5
+1038 may     3
+1039 define  6
+1040 a       1
+1041 Tyrant  7
+1042 is      2
+1043 unfit   5
+1044 to      2
+1045 be      2
+1046 the     3
+1047 ruler   5
+1048 of      2
+1049 a       1
+1050 free    4
+1051 people  7
+1052 Nor     3
+1053 have    4
+1054 We      2
+1055 been    4
+1056 wanting 7
+1057 in      2
+1058 attentions      
+101059 to      2
+1060 our     3
+1061 British 7
+1062 brethren        9
+1063 We      2
+1064 have    4
+1065 warned  6
+1066 them    4
+1067 from    4
+1068 time    4
+1069 to      2
+1070 time    4
+1071 of      2
+1072 attempts        8
+1073 by      2
+1074 their   5
+1075 legislature     11
+1076 to      2
+1077 extend  6
+1078 an      2
+1079 unwarrantable   13
+1080 jurisdiction    12
+1081 over    4
+1082 us      3
+1083 We      2
+1084 have    4
+1085 reminded        8
+1086 them    4
+1087 of      2
+1088 the     3
+1089 circumstances   13
+1090 of      2
+1091 our     3
+1092 emigration      10
+1093 and     3
+1094 settlement      10
+1095 here    5
+1096 We      2
+1097 have    4
+1098 appealed        8
+1099 to      2
+1100 their   5
+1101 native  6
+1102 justice 7
+1103 and     3
+1104 magnanimity     12
+1105 and     3
+1106 we      2
+1105 and     3
+1106 we      2
+1107 have    4
+1108 conjured        8
+1109 them    4
+1110 by      2
+1111 the     3
+1112 ties    4
+1113 of      2
+1114 our     3
+1115 common  6
+1116 kindred 7
+1117 to      2
+1118 disavow 7
+1119 these   5
+1120 usurpations     12
+1121 which   5
+1122 would   5
+1123 inevitably      10
+1124 interrupt       9
+1125 our     3
+1126 connections     11
+1127 and     3
+1128 correspondence  15
+1129 They    4
+1130 too     3
+1131 have    4
+1132 been    4
+1133 deaf    4
+1134 to      2
+1135 the     3
+1136 voice   5
+1137 of      2
+1138 justice 7
+1139 and     3
+1140 of      2
+1141 consanguinity   14
+1142 We      2
+1143 must    5
+1144 therefore       10
+1145 acquiesce       9
+1146 in      2
+1147 the     3
+1148 necessity       10
+1149 which   5
+1150 denounces       9
+1151 our     3
+1152 Separation      11
+1153 and     3
+1154 hold    4
+1155 them    5
+1156 as      2
+1157 we      2
+1158 hold    4
+1159 the     3
+1160 rest    4
+1161 of      2
+1162 mankind 8
+1163 Enemies 7
+1164 in      2
+1165 War     4
+1166 in      2
+1167 Peace   5
+1168 Friends 8
+1169 We      3
+1170 therefore       10
+1171 the     3
+1172 Representatives 15
+1173 of      2
+1174 the     3
+1175 united  6
+1176 States  6
+1177 of      2
+1178 America 8
+1179 in      2
+1180 General 7
+1181 Congress        9
+1182 Assembled       10
+1183 appealing       9
+1184 to      2
+1185 the     3
+1186 Supreme 7
+1187 Judge   5
+1188 of      2
+1189 the     3
+1190 world   5
+1191 for     3
+1192 the     3
+1193 rectitude       9
+1194 of      2
+1195 our     3
+1196 intentions      11
+1197 do      3
+1198 in      2
+1199 the     3
+1200 Name    5
+1201 and     3
+1202 by      2
+1203 Authority       9
+1204 of      2
+1205 the     3
+1206 good    4
+1207 People  6
+1208 of      2
+1209 these   5
+1210 Colonies        9
+1211 solemnly        8
+1212 publish 7
+1213 and     3
+1214 declare 8
+1215 That    4
+1216 these   5
+1217 united  6
+1218 Colonies        8
+1219 are     4
+1220 and     3
+1221 of      2
+1222 Right   5
+1223 ought   5
+1224 to      2
+1225 be      2
+1226 Free    4
+1227 and     3
+1228 Independent     11
+1229 States  7
+1230 that    4
+1231 they    4
+1232 are     3
+1233 Absolved        8
+1234 from    4
+1235 all     3
+1236 Allegiance      10
+1237 to      2
+1238 the     3
+1239 British 7
+1240 Crown   6
+1241 and     3
+1242 that    4
+1243 all     3
+1244 political       9
+1245 connection      10
+1246 between 7
+1247 them    4
+1248 and     3
+1249 the     3
+1250 State   5
+1251 of      2
+1252 Great   5
+1253 Britain 8
+1254 is      2
+1255 and     3
+1256 ought   5
+1257 to      2
+1258 be      2
+1259 totally 7
+1260 dissolved       10
+1261 and     3
+1262 that    4
+1263 as      2
+1264 Free    4
+1265 and     3
+1266 Independent     11
+1267 States  7
+1268 they    4
+1269 have    4
+1270 full    4
+1271 Power   5
+1272 to      2
+1273 levy    4
+1274 War     4
+1275 conclude        8
+1276 Peace   6
+1277 contract        8
+1278 Alliances       10
+1279 establish       9
+1280 Commerce        9
+1281 and     3
+1282 to      2
+1283 do      2
+1284 all     3
+1285 other   5
+1286 Acts    4
+1287 and     3
+1288 Things  6
+1289 which   5
+1290 Independent     11
+1291 States  6
+1292 may     3
+1293 of      2
+1294 right   5
+1295 do      3
+1296 —       3
+1297 And     3
+1298 for     3
+1299 the     3
+1300 support 7
+1301 of      2
+1302 this    4
+1303 Declaration     12
+1304 with    4
+1305 a       1
+1306 firm    4
+1307 reliance        8
+1308 on      2
+1309 the     3
+1310 protection      10
+1311 of      2
+1312 Divine  6
+1313 Providence      11
+1314 we      2
+1315 mutually        8
+1316 pledge  6
+1317 to      2
+1318 each    4
+1319 other   5
+1320 our     3
+1321 Lives   6
+1322 our     3
+1323 Fortunes        9
+1324 and     3
+1325 our     3
+1326 sacred  6
+1327 Honor   6
+1328 Word count=     1326
+1329
+
+SCIPT FOR JFK MOON SPEECH
+
+Lab# Assignment 10
+Text Files stuff
+Compiled:       Apr 26 2019     15:57:30
+Enter a File:
+John Kennedy Moon Speech.txt
+John Kennedy Moon Speech.txt
+Each word, followed by the length can be found in the output file
+Word count=     2201
+[Fri Apr 26 16:08:39 tuj22026@astro:~/lab10 ] $
+
+OUTPUT FILE FOE JFK STORED IN Num_words.txt
+
+   1 EVERY WORD, FOLLOWED BY THE LENGTH OF THE WORD, NO PUNCTUATION:
+   2 President       9
+   3 Pitzer  7
+   4 Mr      3
+   5 Vice    4
+   6 President       10
+   7 Governor        9
+   8 Congressman     11
+   9 Thomas  7
+  10 Senator 7
+  11 Wiley   6
+  12 and     3
+  13 Congressman     11
+  14 Miller  7
+  15 Mr      3
+  16 Webb    5
+  17 Mr      3
+  18 Bell    5
+  19 scientists      11
+  20 distinguished   13
+  21 guests  7
+  22 and     3
+  23 ladies  6
+  24 and     3
+  25 gentlemen       10
+  26 I       1
+  25 gentlemen       10
+  26 I       1
+  27 appreciate      10
+  28 your    4
+  29 president       9
+  30 having  6
+  31 made    4
+  32 me      2
+  33 an      2
+  34 honorary        8
+  35 visiting        8
+  36 professor       10
+  37 and     3
+  38 I       1
+  39 will    4
+  40 assure  6
+  41 you     3
+  42 that    4
+  43 my      2
+  44 first   5
+  45 lecture 7
+  46 will    4
+  47 be      2
+  48 very    4
+  49 brief   6
+  50 I       1
+  51 am      2
+  52 delighted       9
+  53 to      2
+  54 be      2
+  55 here    5
+  56 and     3
+  57 I       3
+  58 particularly    12
+  59 delighted       9
+  60 to      2
+  61 be      2
+  62 here    4
+  63 on      2
+  64 this    4
+  65 occasion        9
+  66 We      2
+  67 meet    4
+  68 at      2
+  69 a       1
+  70 college 7
+  71 noted   5
+  72 for     3
+  73 knowledge       10
+  74 in      2
+  75 a       1
+  76 city    4
+  77 noted   5
+  78 for     3
+  79 progress        9
+  80 in      2
+  81 a       1
+  82 State   5
+  83 noted   5
+  84 for     3
+  85 strength        9
+  86 and     3
+  87 we      2
+  88 stand   5
+  89 in      2
+  90 need    4
+  91 of      2
+  92 all     3
+  93 three   6
+  94 for     3
+  95 we      2
+  96 meet    4
+  97 in      2
+  98 an      2
+  99 hour    4
+ 100 of      2
+ 101 change  6
+ 102 and     3
+ 103 challenge       10
+ 104 in      2
+ 105 a       1
+ 106 decade  6
+ 107 of      2
+ 108 hope    4
+ 109 and     3
+ 110 fear    5
+ 111 in      2
+ 112 an      2
+ 113 age     3
+ 114 of      2
+ 115 both    4
+ 116 knowledge       9
+ 117 and     3
+ 118 ignorance       10
+ 119 The     3
+ 120 greater 7
+ 121 our     3
+ 122 knowledge       9
+ 123 increases       10
+ 124 the     3
+ 125 greater 7
+ 126 our     3
+ 127 ignorance       9
+ 128 unfolds 8
+ 129 Despite 7
+ 130 the     3
+ 131 striking        8
+ 132 fact    4
+ 133 that    4
+ 134 most    4
+ 135 of      2
+ 136 the     3
+ 137 scientists      10
+ 138 that    4
+ 139 the     3
+ 140 world   5
+ 141 has     3
+ 142 ever    4
+ 143 known   5
+ 144 are     3
+ 145 alive   5
+ 146 and     3
+ 147 working 7
+ 148 today   6
+ 149 despite 7
+ 150 the     3
+ 151 fact    4
+ 152 that    4
+ 153 this    4
+ 154 Nation  8
+ 155 own     3
+ 156 scientific      10
+ 157 manpower        8
+ 158 is      2
+ 159 doubling        8
+ 160 every   5
+ 161 12      2
+ 162 years   5
+ 163 in      2
+ 164 a       1
+ 165 rate    4
+ 166 of      2
+ 167 growth  6
+ 168 more    4
+ 169 than    4
+ 170 three   5
+ 171 times   5
+ 172 that    4
+ 173 of      2
+ 174 our     3
+ 175 population      10
+ 176 as      2
+ 177 a       1
+ 178 whole   6
+ 179 despite 7
+ 180 that    5
+ 181 the     3
+ 182 vast    4
+ 183 stretches       9
+ 184 of      2
+ 185 the     3
+ 186 unknown 7
+ 187 and     3
+ 188 the     3
+ 189 unanswered      10
+ 190 and     3
+ 191 the     3
+ 192 unfinished      10
+ 193 still   5
+ 194 far     3
+ 195 outstrip        8
+ 196 our     3
+ 197 collective      10
+ 198 comprehension   14
+ 199 No      2
+ 200 man     3
+ 201 can     3
+ 202 fully   5
+ 203 grasp   5
+ 204 how     3
+ 205 far     3
+ 206 and     3
+ 207 how     3
+ 208 fast    4
+ 209 we      2
+ 210 have    4
+ 211 come    5
+ 212 but     3
+ 213 condense        9
+ 214 if      2
+ 215 you     3
+ 216 will    5
+ 217 the     3
+ 218 50      6
+ 219 years   5
+ 220 of      2
+ 221 man     5
+ 222 recorded        8
+ 223 history 7
+ 224 in      2
+ 225 a       1
+ 226 time    4
+ 227 span    4
+ 228 of      2
+ 229 but     3
+ 230 a       1
+ 231 half    13
+ 232 Stated  6
+ 233 in      2
+ 234 these   5
+ 235 terms   6
+ 236 we      2
+ 237 know    4
+ 238 very    4
+ 239 little  6
+ 240 about   5
+ 241 the     3
+ 242 first   5
+ 243 40      2
+ 244 years   6
+ 245 except  6
+ 246 at      2
+ 247 the     3
+ 248 end     3
+ 249 of      2
+ 250 them    4
+ 251 advanced        8
+ 252 man     3
+ 253 had     3
+ 254 learned 7
+ 255 to      2
+ 256 use     3
+ 257 the     3
+ 258 skins   5
+ 259 of      2
+ 260 animals 7
+ 261 to      2
+ 262 cover   5
+ 263 them    5
+ 264 Then    4
+ 265 about   5
+ 266 10      2
+ 267 years   5
+ 268 ago     4
+ 269 under   5
+ 270 this    4
+ 271 standard        9
+ 272 man     3
+ 273 emerged 7
+ 274 from    4
+ 275 his     3
+ 276 caves   5
+ 277 to      2
+ 278 construct       9
+ 279 other   5
+ 280 kinds   5
+ 281 of      2
+ 282 shelter 8
+ 283 Only    4
+ 284 five    4
+ 285 years   5
+ 286 ago     3
+ 287 man     3
+ 288 learned 7
+ 289 to      2
+ 290 write   5
+ 291 and     3
+ 292 use     3
+ 293 a       1
+ 294 cart    4
+ 295 with    4
+ 296 wheels  7
+ 297 Christianity    12
+ 298 began   5
+ 299 less    4
+ 300 than    4
+ 301 two     3
+ 302 years   5
+ 303 ago     4
+ 304 The     3
+ 305 printing        8
+ 306 press   5
+ 307 came    4
+ 308 this    4
+ 309 year    5
+ 310 and     3
+ 311 then    4
+ 312 less    4
+ 313 than    4
+ 314 two     3
+ 315 months  6
+ 316 ago     4
+ 317 during  6
+ 318 this    4
+ 319 whole   5
+ 320 50      7
+ 321 span    4
+ 322 of      2
+ 323 human   5
+ 324 history 8
+ 325 the     3
+ 326 steam   5
+ 327 engine  6
+ 328 provided        8
+ 329 a       1
+ 330 new     3
+ 331 source  6
+ 332 of      2
+ 333 power   6
+ 334 Newton  6
+ 335 explored        8
+ 336 the     3
+ 337 meaning 7
+ 338 of      2
+ 339 gravity 8
+ 340 Last    4
+ 341 month   5
+ 342 electric        8
+ 343 lights  6
+ 344 and     3
+ 345 telephones      10
+ 346 and     3
+ 347 automobiles     11
+ 348 and     3
+ 349 airplanes       9
+ 350 became  6
+ 351 available       10
+ 352 Only    4
+ 353 last    4
+ 354 week    4
+ 355 did     3
+ 356 we      2
+ 357 develop 7
+ 358 penicillin      10
+ 359 and     3
+ 360 television      10
+ 361 and     3
+ 362 nuclear 7
+ 363 power   6
+ 364 and     3
+ 365 now     3
+ 366 if      2
+ 367 America 9
+ 368 new     3
+ 369 spacecraft      10
+ 370 succeeds        8
+ 371 in      2
+ 372 reaching        8
+ 373 Venus   6
+ 374 we      2
+ 375 will    4
+ 376 have    4
+ 377 literally       9
+ 378 reached 7
+ 379 the     3
+ 380 stars   5
+ 381 before  6
+ 382 midnight        8
+ 383 tonight 8
+ 384 This    4
+ 385 is      2
+ 386 a       1
+ 387 breathtaking    12
+ 388 pace    5
+ 389 and     3
+ 390 such    4
+ 391 a       1
+ 392 pace    4
+ 393 cannot  6
+ 394 help    4
+ 395 but     3
+ 396 create  6
+ 397 new     3
+ 398 ills    4
+ 399 as      2
+ 400 it      2
+ 401 dispels 7
+ 402 old     4
+ 403 new     3
+ 404 ignorance       10
+ 405 new     3
+ 406 problems        9
+ 407 new     3
+ 408 dangers 8
+ 409 Surely  6
+ 410 the     3
+ 411 opening 7
+ 412 vistas  6
+ 413 of      2
+ 414 space   5
+ 415 promise 7
+ 416 high    4
+ 417 costs   5
+ 418 and     3
+ 419 hardships       10
+ 420 as      2
+ 421 well    4
+ 422 as      2
+ 423 high    4
+ 424 reward  7
+ 425 So      2
+ 426 it      2
+ 427 is      2
+ 428 not     3
+ 429 surprising      10
+ 430 that    4
+ 431 some    4
+ 432 would   5
+ 433 have    4
+ 434 us      2
+ 435 stay    4
+ 436 where   5
+ 437 we      2
+ 438 are     3
+ 439 a       1
+ 440 little  6
+ 441 longer  6
+ 442 to      2
+ 443 rest    5
+ 444 to      2
+ 445 wait    5
+ 446 But     3
+ 447 this    4
+ 448 city    4
+ 449 of      2
+ 450 Houston 8
+ 451 this    4
+ 452 State   5
+ 453 of      2
+ 454 Texas   6
+ 455 this    4
+ 456 country 7
+ 457 of      2
+ 458 the     3
+ 459 United  6
+ 460 States  6
+ 461 was     3
+ 462 not     3
+ 463 built   5
+ 464 by      2
+ 465 those   5
+ 466 who     3
+ 467 waited  6
+ 468 and     3
+ 469 rested  6
+ 470 and     3
+ 471 wished  6
+ 472 to      2
+ 473 look    4
+ 474 behind  6
+ 475 them    5
+ 476 This    4
+ 477 country 7
+ 478 was     3
+ 479 conquered       9
+ 480 by      2
+ 481 those   5
+ 482 who     3
+ 483 moved   5
+ 484 forward 12
+ 485 so      2
+ 486 will    4
+ 487 space   6
+ 488 William 7
+ 489 Bradford        9
+ 490 speaking        8
+ 491 in      2
+ 492 1630    4
+ 493 of      2
+ 494 the     3
+ 495 founding        8
+ 496 of      2
+ 497 the     3
+ 498 Plymouth        8
+ 499 Bay     3
+ 500 Colony  7
+ 501 said    4
+ 502 that    4
+ 503 all     3
+ 504 great   5
+ 505 and     3
+ 506 honorable       9
+ 507 actions 7
+ 508 are     3
+ 509 accompanied     11
+ 510 with    4
+ 511 great   5
+ 512 difficulties    13
+ 513 and     3
+ 514 both    4
+ 515 must    4
+ 516 be      2
+ 517 enterprised     11
+ 518 and     3
+ 519 overcome        8
+ 520 with    4
+ 521 answerable      10
+ 522 courage 8
+ 523 If      2
+ 524 this    4
+ 525 capsule 7
+ 526 history 7
+ 527 of      2
+ 528 our     3
+ 529 progress        8
+ 530 teaches 7
+ 531 us      2
+ 532 anything        9
+ 533 it      2
+ 534 is      2
+ 535 that    4
+ 536 man     4
+ 537 in      2
+ 538 his     3
+ 539 quest   5
+ 540 for     3
+ 541 knowledge       9
+ 542 and     3
+ 543 progress        9
+ 544 is      2
+ 545 determined      10
+ 546 and     3
+ 547 cannot  6
+ 548 be      2
+ 549 deterred        9
+ 550 The     3
+ 551 exploration     11
+ 552 of      2
+ 553 space   5
+ 554 will    4
+ 555 go      2
+ 556 ahead   6
+ 557 whether 7
+ 558 we      2
+ 559 join    4
+ 560 in      2
+ 561 it      2
+ 562 or      2
+ 563 not     4
+ 564 and     3
+ 565 it      2
+ 566 is      2
+ 567 one     3
+ 568 of      2
+ 569 the     3
+ 570 great   5
+ 571 adventures      10
+ 572 of      2
+ 573 all     3
+ 574 time    5
+ 575 and     3
+ 576 no      2
+ 577 nation  6
+ 578 which   5
+ 579 expects 7
+ 580 to      2
+ 581 be      2
+ 582 the     3
+ 583 leader  6
+ 584 of      2
+ 585 other   5
+ 586 nations 7
+ 587 can     3
+ 588 expect  6
+ 589 to      2
+ 590 stay    4
+ 591 behind  6
+ 592 in      2
+ 593 the     3
+ 594 race    4
+ 595 for     3
+ 596 space   6
+ 597 Those   5
+ 598 who     3
+ 599 came    4
+ 600 before  6
+ 601 us      2
+ 602 made    4
+ 603 certain 7
+ 604 that    4
+ 605 this    4
+ 606 country 7
+ 607 rode    4
+ 608 the     3
+ 609 first   5
+ 610 waves   5
+ 611 of      2
+ 612 the     3
+ 613 industrial      10
+ 614 revolutions     12
+ 615 the     3
+ 616 first   5
+ 617 waves   5
+ 618 of      2
+ 619 modern  6
+ 620 invention       10
+ 621 and     3
+ 622 the     3
+ 623 first   5
+ 624 wave    4
+ 625 of      2
+ 626 nuclear 7
+ 627 power   6
+ 628 and     3
+ 629 this    4
+ 630 generation      10
+ 631 does    4
+ 632 not     3
+ 633 intend  6
+ 634 to      2
+ 635 founder 7
+ 636 in      2
+ 637 the     3
+ 638 backwash        8
+ 639 of      2
+ 640 the     3
+ 641 coming  6
+ 642 age     3
+ 643 of      2
+ 644 space   6
+ 645 We      2
+ 646 mean    4
+ 647 to      2
+ 648 be      2
+ 649 a       1
+ 650 part    4
+ 651 of      2
+ 652 it      6
+ 653 mean    4
+ 654 to      2
+ 655 lead    4
+ 656 it      3
+ 657 For     3
+ 658 the     3
+ 659 eyes    4
+ 660 of      2
+ 661 the     3
+ 662 world   5
+ 663 now     3
+ 664 look    4
+ 665 into    4
+ 666 space   6
+ 667 to      2
+ 668 the     3
+ 669 moon    4
+ 670 and     3
+ 671 to      2
+ 672 the     3
+ 673 planets 7
+ 674 beyond  7
+ 675 and     3
+ 676 we      2
+ 677 have    4
+ 678 vowed   5
+ 679 that    4
+ 680 we      2
+ 681 shall   5
+ 682 not     3
+ 683 see     3
+ 684 it      2
+ 685 governed        8
+ 686 by      2
+ 687 a       1
+ 688 hostile 7
+ 689 flag    4
+ 690 of      2
+ 691 conquest        9
+ 692 but     3
+ 693 by      2
+ 694 a       1
+ 695 banner  6
+ 696 of      2
+ 697 freedom 7
+ 698 and     3
+ 699 peace   6
+ 700 We      2
+ 701 have    4
+ 702 vowed   5
+ 703 that    4
+ 704 we      2
+ 705 shall   5
+ 706 not     3
+ 707 see     3
+ 708 space   5
+ 709 filled  6
+ 710 with    4
+ 711 weapons 7
+ 712 of      2
+ 713 mass    4
+ 714 destruction     12
+ 715 but     3
+ 716 with    4
+ 717 instruments     11
+ 718 of      2
+ 719 knowledge       9
+ 720 and     3
+ 721 understanding   14
+ 722 Yet     3
+ 723 the     3
+ 724 vows    4
+ 725 of      2
+ 726 this    4
+ 727 Nation  6
+ 728 can     3
+ 729 only    4
+ 730 be      2
+ 731 fulfilled       9
+ 732 if      2
+ 733 we      2
+ 734 in      2
+ 735 this    4
+ 736 Nation  6
+ 737 are     3
+ 738 first   6
+ 739 and     4
+ 740 therefore       10
+ 741 we      2
+ 742 intend  6
+ 743 to      2
+ 744 be      2
+ 745 first   6
+ 746 In      2
+ 747 short   6
+ 748 our     3
+ 749 leadership      10
+ 750 in      2
+ 751 science 7
+ 752 and     3
+ 753 in      2
+ 754 industry        9
+ 755 our     3
+ 756 hopes   5
+ 757 for     3
+ 758 peace   5
+ 759 and     3
+ 760 security        9
+ 761 our     3
+ 762 obligations     11
+ 763 to      2
+ 764 ourselves       9
+ 765 as      2
+ 766 well    4
+ 767 as      2
+ 768 others  7
+ 769 all     3
+ 770 require 7
+ 771 us      2
+ 772 to      2
+ 773 make    4
+ 774 this    4
+ 775 effort  7
+ 776 to      2
+ 777 solve   5
+ 778 these   5
+ 779 mysteries       10
+ 780 to      2
+ 781 solve   5
+ 782 them    4
+ 783 for     3
+ 784 the     3
+ 785 good    4
+ 786 of      2
+ 787 all     3
+ 788 men     4
+ 789 and     3
+ 790 to      2
+ 791 become  6
+ 792 the     3
+ 793 world   7
+ 794 leading 7
+ 795 space   12
+ 796 nation  7
+ 797 We      2
+ 798 set     3
+ 799 sail    4
+ 800 on      2
+ 801 this    4
+ 802 new     3
+ 803 sea     3
+ 804 because 7
+ 805 there   5
+ 806 is      2
+ 807 new     3
+ 808 knowledge       9
+ 809 to      2
+ 810 be      2
+ 811 gained  7
+ 812 and     3
+ 813 new     3
+ 814 rights  6
+ 815 to      2
+ 816 be      2
+ 817 won     4
+ 818 and     3
+ 819 they    4
+ 820 must    4
+ 821 be      2
+ 822 won     3
+ 823 and     3
+ 824 used    4
+ 825 for     3
+ 826 the     3
+ 827 progress        8
+ 828 of      2
+ 829 all     3
+ 830 people  7
+ 831 For     3
+ 832 space   5
+ 833 science 8
+ 834 like    4
+ 835 nuclear 7
+ 836 science 7
+ 837 and     3
+ 838 all     3
+ 839 technology      11
+ 840 has     3
+ 841 no      2
+ 842 conscience      10
+ 843 of      2
+ 844 its     3
+ 845 own     4
+ 846 Whether 7
+ 847 it      2
+ 848 will    4
+ 849 become  6
+ 850 a       1
+ 851 force   5
+ 852 for     3
+ 853 good    4
+ 854 or      2
+ 855 ill     3
+ 856 depends 7
+ 857 on      2
+ 858 man     4
+ 859 and     3
+ 860 only    4
+ 861 if      2
+ 862 the     3
+ 863 United  6
+ 864 States  6
+ 865 occupies        8
+ 866 a       1
+ 867 position        8
+ 868 of      2
+ 869 pre     12
+ 870 can     3
+ 871 we      2
+ 872 help    4
+ 873 decide  6
+ 874 whether 7
+ 875 this    4
+ 876 new     3
+ 877 ocean   5
+ 878 will    4
+ 879 be      2
+ 880 a       1
+ 881 sea     3
+ 882 of      2
+ 883 peace   5
+ 884 or      2
+ 885 a       1
+ 886 new     3
+ 887 terrifying      10
+ 888 theater 7
+ 889 of      2
+ 890 war     4
+ 891 I       1
+ 892 do      2
+ 893 not     3
+ 894 say     3
+ 895 the     3
+ 896 we      2
+ 897 should  6
+ 898 or      2
+ 899 will    4
+ 900 go      2
+ 901 unprotected     11
+ 902 against 7
+ 903 the     3
+ 904 hostile 7
+ 905 misuse  6
+ 906 of      2
+ 907 space   5
+ 908 any     3
+ 909 more    4
+ 910 than    4
+ 911 we      2
+ 912 go      2
+ 913 unprotected     11
+ 914 against 7
+ 915 the     3
+ 916 hostile 7
+ 917 use     3
+ 918 of      2
+ 919 land    4
+ 920 or      2
+ 921 sea     4
+ 922 but     3
+ 923 I       1
+ 924 do      2
+ 925 say     3
+ 926 that    4
+ 927 space   5
+ 928 can     3
+ 929 be      2
+ 930 explored        8
+ 931 and     3
+ 932 mastered        8
+ 933 without 7
+ 934 feeding 7
+ 935 the     3
+ 936 fires   5
+ 937 of      2
+ 938 war     4
+ 939 without 7
+ 940 repeating       9
+ 941 the     3
+ 942 mistakes        8
+ 943 that    4
+ 944 man     3
+ 945 has     3
+ 946 made    4
+ 947 in      2
+ 948 extending       9
+ 949 his     3
+ 950 writ    4
+ 951 around  6
+ 952 this    4
+ 953 globe   5
+ 954 of      2
+ 955 ours    5
+ 956 There   5
+ 957 is      2
+ 958 no      2
+ 959 strife  7
+ 960 no      2
+ 961 prejudice       10
+ 962 no      2
+ 963 national        8
+ 964 conflict        8
+ 965 in      2
+ 966 outer   5
+ 967 space   5
+ 968 as      2
+ 969 yet     4
+ 970 Its     3
+ 971 hazards 7
+ 972 are     3
+ 973 hostile 7
+ 974 to      2
+ 975 us      2
+ 976 all     4
+ 977 Its     3
+ 978 conquest        8
+ 979 deserves        8
+ 980 the     3
+ 981 best    4
+ 982 of      2
+ 983 all     3
+ 984 mankind 8
+ 985 and     3
+ 986 its     3
+ 987 opportunity     11
+ 988 for     3
+ 989 peaceful        8
+ 990 cooperation     11
+ 991 many    4
+ 992 never   5
+ 993 come    4
+ 994 again   6
+ 995 But     3
+ 996 why     4
+ 997 some    4
+ 998 say     4
+ 999 the     3
+1000 moon    5
+1001 Why     3
+1002 choose  6
+1003 this    4
+1004 as      2
+1005 our     3
+1006 goal    5
+1007 And     3
+1008 they    4
+1009 may     3
+1010 well    4
+1011 ask     3
+1012 why     3
+1013 climb   5
+1014 the     3
+1015 highest 7
+1016 mountain        9
+1017 Why     4
+1018 35      2
+1019 years   5
+1020 ago     4
+1021 fly     3
+1022 the     3
+1023 Atlantic        9
+1024 Why     3
+1025 does    4
+1026 Rice    4
+1027 play    4
+1028 Texas   6
+1029 We      2
+1030 choose  6
+1031 to      2
+1032 go      2
+1033 to      2
+1034 the     3
+1035 moon    5
+1036 We      2
+1037 choose  6
+1038 to      2
+1039 go      2
+1040 to      2
+1041 the     3
+1042 moon    4
+1043 in      2
+1044 this    4
+1045 decade  6
+1046 and     3
+1047 do      2
+1048 the     3
+1049 other   5
+1050 things  7
+1051 not     3
+1052 because 7
+1053 they    4
+1054 are     3
+1055 easy    5
+1056 but     3
+1057 because 7
+1058 they    4
+1059 are     3
+1060 hard    5
+1061 because 7
+1062 that    4
+1063 goal    4
+1064 will    4
+1065 serve   5
+1066 to      2
+1067 organize        8
+1068 and     3
+1069 measure 7
+1070 the     3
+1071 best    4
+1072 of      2
+1073 our     3
+1074 energies        8
+1075 and     3
+1076 skills  7
+1077 because 7
+1078 that    4
+1079 challenge       9
+1080 is      2
+1081 one     3
+1082 that    4
+1083 we      2
+1084 are     3
+1085 willing 7
+1086 to      2
+1087 accept  7
+1088 one     3
+1089 we      2
+1090 are     3
+1091 unwilling       9
+1092 to      2
+1093 postpone        9
+1094 and     3
+1095 one     3
+1096 which   5
+1097 we      2
+1098 intend  6
+1099 to      2
+1100 win     4
+1101 and     3
+1102 the     3
+1103 others  7
+1104 too     4
+1105 It      2
+1106 is      2
+1107 for     3
+1108 these   5
+1109 reasons 7
+1110 that    4
+1111 I       1
+1112 regard  6
+1113 the     3
+1114 decision        8
+1115 last    4
+1116 year    4
+1117 to      2
+1118 shift   5
+1119 our     3
+1120 efforts 7
+1121 in      2
+1122 space   5
+1123 from    4
+1124 low     3
+1125 to      2
+1126 high    4
+1127 gear    4
+1128 as      2
+1129 among   5
+1130 the     3
+1131 most    4
+1132 important       9
+1133 decisions       9
+1134 that    4
+1135 will    4
+1136 be      2
+1137 made    4
+1138 during  6
+1139 my      2
+1140 incumbency      10
+1141 in      2
+1142 the     3
+1143 office  6
+1144 of      2
+1145 the     3
+1146 Presidency      11
+1147 In      2
+1148 the     3
+1149 last    4
+1150 24      2
+1151 hours   5
+1152 we      2
+1153 have    4
+1154 seen    4
+1155 facilities      10
+1156 now     3
+1157 being   5
+1158 created 7
+1159 for     3
+1160 the     3
+1161 greatest        8
+1162 and     3
+1163 most    4
+1164 complex 7
+1165 exploration     11
+1166 in      2
+1167 man     5
+1168 history 8
+1169 We      2
+1170 have    4
+1171 felt    4
+1172 the     3
+1173 ground  6
+1174 shake   5
+1175 and     3
+1176 the     3
+1177 air     3
+1178 shattered       9
+1179 by      2
+1180 the     3
+1181 testing 7
+1182 of      2
+1183 a       1
+1184 Saturn  6
+1185 C       3
+1186 booster 7
+1187 rocket  7
+1188 many    4
+1189 times   5
+1190 as      2
+1191 powerful        8
+1192 as      2
+1193 the     3
+1194 Atlas   5
+1195 which   5
+1196 launched        8
+1197 John    4
+1198 Glenn   6
+1199 generating      10
+1200 power   5
+1201 equivalent      10
+1202 to      2
+1203 10      6
+1204 automobiles     11
+1205 with    4
+1206 their   5
+1207 accelerators    12
+1208 on      2
+1209 the     3
+1210 floor   6
+1211 We      2
+1212 have    4
+1213 seen    4
+1214 the     3
+1215 site    4
+1216 where   5
+1217 the     3
+1218 F       3
+1219 rocket  6
+1220 engines 8
+1221 each    4
+1222 one     3
+1223 as      2
+1224 powerful        8
+1225 as      2
+1226 all     3
+1227 eight   5
+1228 engines 7
+1229 of      2
+1230 the     3
+1231 Saturn  6
+1232 combined        9
+1233 will    4
+1234 be      2
+1235 clustered       9
+1236 together        8
+1237 to      2
+1238 make    4
+1239 the     3
+1240 advanced        8
+1241 Saturn  6
+1242 missile 8
+1243 assembled       9
+1244 in      2
+1245 a       1
+1246 new     3
+1247 building        8
+1248 to      2
+1249 be      2
+1250 built   5
+1251 at      2
+1252 Cape    4
+1253 Canaveral       9
+1254 as      2
+1255 tall    4
+1256 as      2
+1257 a       1
+1258 48      2
+1259 story   5
+1260 structure       10
+1261 as      2
+1262 wide    4
+1263 as      2
+1264 a       1
+1265 city    4
+1266 block   6
+1267 and     3
+1268 as      2
+1269 long    4
+1270 as      2
+1271 two     3
+1272 lengths 7
+1273 of      2
+1274 this    4
+1275 field   6
+1276 Within  6
+1277 these   5
+1278 last    4
+1279 19      2
+1280 months  6
+1281 at      2
+1282 least   5
+1283 45      2
+1284 satellites      10
+1285 have    4
+1286 circled 7
+1287 the     3
+1288 earth   6
+1289 Some    4
+1290 40      2
+1291 of      2
+1292 them    4
+1293 were    4
+1294 "made   5
+1295 in      2
+1296 the     3
+1297 United  6
+1298 States  6
+1299 of      2
+1300 America 8
+1301 and     3
+1302 they    4
+1303 were    4
+1304 far     3
+1305 more    4
+1306 sophisticated   13
+1307 and     3
+1308 supplied        8
+1309 far     3
+1310 more    4
+1311 knowledge       9
+1312 to      2
+1313 the     3
+1314 people  6
+1315 of      2
+1316 the     3
+1317 world   5
+1318 than    4
+1319 those   5
+1320 of      2
+1321 the     3
+1322 Soviet  6
+1323 Union   6
+1324 The     3
+1325 Mariner 7
+1326 spacecraft      10
+1327 now     3
+1328 on      2
+1329 its     3
+1330 way     3
+1331 to      2
+1332 Venus   5
+1333 is      2
+1334 the     3
+1335 most    4
+1336 intricate       9
+1337 instrument      10
+1338 in      2
+1339 the     3
+1340 history 7
+1341 of      2
+1342 space   5
+1343 science 8
+1344 The     3
+1345 accuracy        8
+1346 of      2
+1347 that    4
+1348 shot    4
+1349 is      2
+1350 comparable      10
+1351 to      2
+1352 firing  6
+1353 a       1
+1354 missile 7
+1355 from    4
+1356 Cape    4
+1357 Canaveral       9
+1358 and     3
+1359 dropping        8
+1360 it      2
+1361 in      2
+1362 this    4
+1363 stadium 7
+1364 between 7
+1365 the     3
+1366 40      7
+1367 lines   6
+1368 Transit 7
+1369 satellites      10
+1370 are     3
+1371 helping 7
+1372 our     3
+1373 ships   5
+1374 at      2
+1375 sea     3
+1376 to      2
+1377 steer   5
+1378 a       1
+1379 safer   5
+1380 course  7
+1381 Tiros   5
+1382 satellites      10
+1383 have    4
+1384 given   5
+1385 us      2
+1386 unprecedented   13
+1387 warnings        8
+1388 of      2
+1389 hurricanes      10
+1390 and     3
+1391 storms  7
+1392 and     3
+1393 will    4
+1394 do      2
+1395 the     3
+1396 same    4
+1397 for     3
+1398 forest  6
+1399 fires   5
+1400 and     3
+1401 icebergs        9
+1402 We      2
+1403 have    4
+1404 had     3
+1405 our     3
+1406 failures        9
+1407 but     3
+1408 so      2
+1409 have    4
+1410 others  7
+1411 even    4
+1412 if      2
+1413 they    4
+1414 do      2
+1415 not     3
+1416 admit   5
+1417 them    5
+1418 And     3
+1419 they    4
+1420 may     3
+1421 be      2
+1422 less    4
+1423 public  7
+1424 To      2
+1425 be      2
+1426 sure    5
+1427 we      2
+1428 are     3
+1429 behind  7
+1430 and     3
+1431 will    4
+1432 be      2
+1433 behind  6
+1434 for     3
+1435 some    4
+1436 time    4
+1437 in      2
+1438 manned  6
+1439 flight  7
+1440 But     3
+1441 we      2
+1442 do      2
+1443 not     3
+1444 intend  6
+1445 to      2
+1446 stay    4
+1447 behind  7
+1448 and     3
+1449 in      2
+1450 this    4
+1451 decade  7
+1452 we      2
+1453 shall   5
+1454 make    4
+1455 up      2
+1456 and     3
+1457 move    4
+1458 ahead   6
+1459 The     3
+1460 growth  6
+1461 of      2
+1462 our     3
+1463 science 7
+1464 and     3
+1465 education       9
+1466 will    4
+1467 be      2
+1468 enriched        8
+1469 by      2
+1470 new     3
+1471 knowledge       9
+1472 of      2
+1473 our     3
+1474 universe        8
+1475 and     3
+1476 environment     12
+1477 by      2
+1478 new     3
+1479 techniques      10
+1480 of      2
+1481 learning        8
+1482 and     3
+1483 mapping 7
+1484 and     3
+1485 observation     12
+1486 by      2
+1487 new     3
+1488 tools   5
+1489 and     3
+1490 computers       9
+1491 for     3
+1492 industry        9
+1493 medicine        9
+1494 the     3
+1495 home    4
+1496 as      2
+1497 well    4
+1498 as      2
+1499 the     3
+1500 school  7
+1501 Technical       9
+1502 institutions    13
+1503 such    4
+1504 as      2
+1505 Rice    5
+1506 will    4
+1507 reap    4
+1508 the     3
+1509 harvest 7
+1510 of      2
+1511 these   5
+1512 gains   6
+1513 And     3
+1514 finally 8
+1515 the     3
+1516 space   5
+1517 effort  6
+1518 itself  7
+1519 while   5
+1520 still   5
+1521 in      2
+1522 its     3
+1523 infancy 8
+1524 has     3
+1525 already 7
+1526 created 7
+1527 a       1
+1528 great   5
+1529 number  6
+1530 of      2
+1531 new     3
+1532 companies       10
+1533 and     3
+1534 tens    4
+1535 of      2
+1536 thousands       9
+1537 of      2
+1538 new     3
+1539 jobs    5
+1540 Space   5
+1541 and     3
+1542 related 7
+1543 industries      10
+1544 are     3
+1545 generating      10
+1546 new     3
+1547 demands 7
+1548 in      2
+1549 investment      10
+1550 and     3
+1551 skilled 7
+1552 personnel       10
+1553 and     3
+1554 this    4
+1555 city    4
+1556 and     3
+1557 this    4
+1558 State   6
+1559 and     3
+1560 this    4
+1561 region  7
+1562 will    4
+1563 share   5
+1564 greatly 7
+1565 in      2
+1566 this    4
+1567 growth  7
+1568 What    4
+1569 was     3
+1570 once    4
+1571 the     3
+1572 furthest        8
+1573 outpost 7
+1574 on      2
+1575 the     3
+1576 old     3
+1577 frontier        8
+1578 of      2
+1579 the     3
+1580 West    4
+1581 will    4
+1582 be      2
+1583 the     3
+1584 furthest        8
+1585 outpost 7
+1586 on      2
+1587 the     3
+1588 new     3
+1589 frontier        8
+1590 of      2
+1591 science 7
+1592 and     3
+1593 space   6
+1594 Houston 8
+1595 your    4
+1596 City    4
+1597 of      2
+1598 Houston 8
+1599 with    4
+1600 its     3
+1601 Manned  6
+1602 Spacecraft      10
+1603 Center  7
+1604 will    4
+1605 become  6
+1606 the     3
+1607 heart   5
+1608 of      2
+1609 a       1
+1610 large   5
+1611 scientific      10
+1612 and     3
+1613 engineering     11
+1614 community       10
+1615 During  6
+1616 the     3
+1617 next    4
+1618 5       1
+1619 years   5
+1620 the     3
+1621 National        8
+1622 Aeronautics     11
+1623 and     3
+1624 Space   5
+1625 Administration  14
+1626 expects 7
+1627 to      2
+1628 double  6
+1629 the     3
+1630 number  6
+1631 of      2
+1632 scientists      10
+1633 and     3
+1634 engineers       9
+1635 in      2
+1636 this    4
+1637 area    5
+1638 to      2
+1639 increase        8
+1640 its     3
+1641 outlays 7
+1642 for     3
+1643 salaries        8
+1644 and     3
+1645 expenses        8
+1646 to      2
+1647 $60     3
+1648 million 7
+1649 a       1
+1650 year    5
+1651 to      2
+1652 invest  6
+1653 some    4
+1654 $200    4
+1655 million 7
+1656 in      2
+1657 plant   5
+1658 and     3
+1659 laboratory      10
+1660 facilities      11
+1661 and     3
+1662 to      2
+1663 direct  6
+1664 or      2
+1665 contract        8
+1666 for     3
+1667 new     3
+1668 space   5
+1669 efforts 7
+1670 over    4
+1671 $1      2
+1672 billion 7
+1673 from    4
+1674 this    4
+1675 Center  6
+1676 in      2
+1677 this    4
+1678 City    5
+1679 To      2
+1680 be      2
+1681 sure    5
+1682 all     3
+1683 this    4
+1684 costs   5
+1685 us      2
+1686 all     3
+1687 a       1
+1688 good    4
+1689 deal    4
+1690 of      2
+1691 money   6
+1692 This    4
+1693 year    6
+1694 space   5
+1695 budget  6
+1696 is      2
+1697 three   5
+1698 times   5
+1699 what    4
+1700 it      2
+1701 was     3
+1702 in      2
+1703 January 7
+1704 1961    5
+1705 and     3
+1706 it      2
+1707 is      2
+1708 greater 7
+1709 than    4
+1710 the     3
+1711 space   5
+1712 budget  6
+1713 of      2
+1714 the     3
+1715 previous        8
+1716 eight   5
+1717 years   5
+1718 combined        9
+1719 That    4
+1720 budget  6
+1721 now     3
+1722 stands  6
+1723 at      2
+1724 $5      6
+1725 million 7
+1726 a       1
+1727 year    7
+1728 staggering      10
+1729 sum     4
+1730 though  6
+1731 somewhat        8
+1732 less    4
+1733 than    4
+1734 we      2
+1735 pay     3
+1736 for     3
+1737 cigarettes      10
+1738 and     3
+1739 cigars  6
+1740 every   5
+1741 year    5
+1742 Space   5
+1743 expenditures    12
+1744 will    4
+1745 soon    4
+1746 rise    4
+1747 some    4
+1748 more    5
+1749 from    4
+1750 40      2
+1751 cents   5
+1752 per     3
+1753 person  6
+1754 per     3
+1755 week    4
+1756 to      2
+1757 more    4
+1758 than    4
+1759 50      2
+1760 cents   5
+1761 a       1
+1762 week    4
+1763 for     3
+1764 every   5
+1765 man     4
+1766 woman   5
+1767 and     3
+1768 child   5
+1769 in      2
+1770 the     3
+1771 United  6
+1772 Stated  7
+1773 for     3
+1774 we      2
+1775 have    4
+1776 given   5
+1777 this    4
+1778 program 7
+1779 a       1
+1780 high    4
+1781 national        8
+1782 priority        14
+1783 though  6
+1784 I       1
+1785 realize 7
+1786 that    4
+1787 this    4
+1788 is      2
+1789 in      2
+1790 some    4
+1791 measure 7
+1792 an      2
+1793 act     3
+1794 of      2
+1795 faith   5
+1796 and     3
+1797 vision  7
+1798 for     3
+1799 we      2
+1800 do      2
+1801 not     3
+1802 now     3
+1803 know    4
+1804 what    4
+1805 benefits        8
+1806 await   5
+1807 us      3
+1808 But     3
+1809 if      2
+1810 I       1
+1811 were    4
+1812 to      2
+1813 say     4
+1814 my      2
+1815 fellow  6
+1816 citizens        9
+1817 that    4
+1818 we      2
+1819 shall   5
+1820 send    4
+1821 to      2
+1822 the     3
+1823 moon    5
+1824 240     7
+1825 miles   5
+1826 away    4
+1827 from    4
+1828 the     3
+1829 control 7
+1830 station 7
+1831 in      2
+1832 Houston 8
+1833 a       1
+1834 giant   5
+1835 rocket  6
+1836 more    4
+1837 than    4
+1838 300     3
+1839 feet    4
+1840 tall    5
+1841 the     3
+1842 length  6
+1843 of      2
+1844 this    4
+1845 football        8
+1846 field   6
+1847 made    4
+1848 of      2
+1849 new     3
+1850 metal   5
+1851 alloys  7
+1852 some    4
+1853 of      2
+1854 which   5
+1855 have    4
+1856 not     3
+1857 yet     3
+1858 been    4
+1859 invented        9
+1860 capable 7
+1861 of      2
+1862 standing        8
+1863 heat    4
+1864 and     3
+1865 stresses        8
+1866 several 7
+1867 times   5
+1868 more    4
+1869 than    4
+1870 have    4
+1871 ever    4
+1872 been    4
+1873 experienced     12
+1874 fitted  6
+1875 together        8
+1876 with    4
+1877 a       1
+1878 precision       9
+1879 better  6
+1880 than    4
+1881 the     3
+1882 finest  6
+1883 watch   6
+1884 carrying        8
+1885 all     3
+1886 the     3
+1887 equipment       9
+1888 needed  6
+1889 for     3
+1890 propulsion      11
+1891 guidance        9
+1892 control 8
+1893 communications  15
+1894 food    4
+1895 and     3
+1896 survival        9
+1897 on      2
+1898 an      2
+1899 untried 7
+1900 mission 8
+1901 to      2
+1902 an      2
+1903 unknown 7
+1904 celestial       9
+1905 body    5
+1906 and     3
+1907 then    4
+1908 return  6
+1909 it      2
+1910 safely  6
+1911 to      2
+1912 earth   6
+1913 re      11
+1914 the     3
+1915 atmosphere      10
+1916 at      2
+1917 speeds  6
+1918 of      2
+1919 over    4
+1920 25      6
+1921 miles   5
+1922 per     3
+1923 hour    5
+1924 causing 7
+1925 heat    4
+1926 about   5
+1927 half    4
+1928 that    4
+1929 of      2
+1930 the     3
+1931 temperature     11
+1932 of      2
+1933 the     3
+1934 sun     11
+1935 as      2
+1936 hot     3
+1937 as      2
+1938 it      2
+1939 is      2
+1940 here    4
+1941 today   5
+1942 -       5
+1943 do      2
+1944 all     3
+1945 this    5
+1946 and     3
+1947 do      2
+1948 it      2
+1949 right   6
+1950 and     3
+1951 do      2
+1952 it      2
+1953 first   5
+1954 before  6
+1955 this    4
+1956 decade  6
+1957 is      2
+1958 out     3
+1959 -       6
+1960 we      2
+1961 must    4
+1962 be      2
+1963 bold    5
+1964 I       3
+1965 the     3
+1966 one     3
+1967 who     3
+1968 is      2
+1969 doing   5
+1970 all     3
+1971 the     3
+1972 work    5
+1973 so      2
+1974 we      2
+1975 just    4
+1976 want    4
+1977 you     3
+1978 to      2
+1979 stay    4
+1980 cool    4
+1981 for     3
+1982 a       1
+1983 minute  7
+1984 [laughter       10
+1985 However 8
+1986 I       1
+1987 think   5
+1988 we      5
+1989 going   5
+1990 to      2
+1991 do      2
+1992 it      3
+1993 and     3
+1994 I       1
+1995 think   5
+1996 that    4
+1997 we      2
+1998 must    4
+1999 pay     3
+2000 what    4
+2001 needs   5
+2002 to      2
+2003 be      2
+2004 paid    5
+2005 I       1
+2006 don     5
+2007 think   5
+2008 we      2
+2009 ought   5
+2010 to      2
+2011 waste   5
+2012 any     3
+2013 money   6
+2014 but     3
+2015 I       1
+2016 think   5
+2017 we      2
+2018 ought   5
+2019 to      2
+2020 do      2
+2021 the     3
+2022 job     4
+2023 And     3
+2024 this    4
+2025 will    4
+2026 be      2
+2027 done    4
+2028 in      2
+2029 the     3
+2030 decade  6
+2031 of      2
+2032 the     3
+2033 sixties 8
+2034 It      2
+2035 may     3
+2036 be      2
+2037 done    4
+2038 while   5
+2039 some    4
+2040 of      2
+2041 you     3
+2042 are     3
+2043 still   5
+2044 here    4
+2045 at      2
+2046 school  6
+2047 at      2
+2048 this    4
+2049 college 7
+2050 and     3
+2051 university      11
+2052 It      2
+2053 will    4
+2054 be      2
+2055 done    4
+2056 during  6
+2057 the     3
+2058 term    4
+2059 of      2
+2060 office  6
+2061 of      2
+2062 some    4
+2063 of      2
+2064 the     3
+2065 people  6
+2066 who     3
+2067 sit     3
+2068 here    4
+2069 on      2
+2070 this    4
+2071 platform        9
+2072 But     3
+2073 it      2
+2074 will    4
+2075 be      2
+2076 done    5
+2077 And     3
+2078 it      2
+2079 will    4
+2080 be      2
+2081 done    4
+2082 before  6
+2083 the     3
+2084 end     3
+2085 of      2
+2086 this    4
+2087 decade  7
+2088 I       1
+2089 am      2
+2090 delighted       9
+2091 that    4
+2092 this    4
+2093 university      10
+2094 is      2
+2095 playing 7
+2096 a       1
+2097 part    4
+2098 in      2
+2099 putting 7
+2100 a       1
+2101 man     3
+2102 on      2
+2103 the     3
+2104 moon    4
+2105 as      2
+2106 part    4
+2107 of      2
+2108 a       1
+2109 great   5
+2110 national        8
+2111 effort  6
+2112 of      2
+2113 the     3
+2114 United  6
+2115 States  6
+2116 of      2
+2117 America 8
+2118 Many    4
+2119 years   5
+2120 ago     3
+2121 the     3
+2122 great   5
+2123 British 7
+2124 explorer        8
+2125 George  6
+2126 Mallory 8
+2127 who     3
+2128 was     3
+2129 to      2
+2130 die     3
+2131 on      2
+2132 Mount   5
+2133 Everest 8
+2134 was     3
+2135 asked   5
+2136 why     3
+2137 did     3
+2138 he      2
+2139 want    4
+2140 to      2
+2141 climb   5
+2142 it      3
+2143 He      2
+2144 said    5
+2145 "Because        8
+2146 it      2
+2147 is      2
+2148 there   7
+2149 Well    5
+2150 space   5
+2151 is      2
+2152 there   6
+2153 and     3
+2154 we      5
+2155 going   5
+2156 to      2
+2157 climb   5
+2158 it      3
+2159 and     3
+2160 the     3
+2161 moon    4
+2162 and     3
+2163 the     3
+2164 planets 7
+2165 are     3
+2166 there   6
+2167 and     3
+2168 new     3
+2169 hopes   5
+2170 for     3
+2171 knowledge       9
+2172 and     3
+2173 peace   5
+2174 are     3
+2175 there   6
+2176 And     4
+2177 therefore       10
+2178 as      2
+2179 we      2
+2180 set     3
+2181 sail    4
+2182 we      2
+2183 ask     3
+2184 God     5
+2185 blessing        8
+2186 on      2
+2187 the     3
+2188 most    4
+2189 hazardous       9
+2190 and     3
+2191 dangerous       9
+2192 and     3
+2193 greatest        8
+2194 adventure       9
+2195 on      2
+2196 which   5
+2197 man     3
+2198 has     3
+2199 ever    4
+2200 embarked        9
+2201 Thank   5
+2202 you     4
+2203 Word count=     2201
+2204
