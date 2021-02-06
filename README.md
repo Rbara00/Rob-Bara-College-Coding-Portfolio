@@ -2,14 +2,16 @@
 A work in Progress College Portfolio of Rob L. Bara which demonstrates the growth and understanding of programming knowledge
 Currently consisting of:
 
--C programming Labs 
+-Introduction to C programming Labs 
 
 -Digital Circuit Design Verilog Lab reports
 
--A MATLAB final project
+-Processors Systems Lab reports (Assembly and C)
 
--Processors Systems Lab reports
+-Embedded Systems Design Lab reports using Vivado and SDK (C, FreeRTOS, Verilog)
+
+-A MATLAB Hangman final project from Engineering Analysis
 
 -Two Analogue Electric Circuits Final Projects with the help of MATLAB and Multisim
 
--Signals Computer Assignments written in MATLAB
+-Signals and Systems:Continuous & Discrete-Computer Assignments written in MATLAB
