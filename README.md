@@ -16,4 +16,5 @@ Currently consisting of:
 
 -Signals and Systems:Continuous & Discrete-Computer Assignments written in MATLAB
 
-For Technical Communication/Writing skills, my Final paper for Technical Communications is avaliable for viewing, which discusses creating a fast-stable real time object detection system for Drones/UAVs 
+-For Technical Communication/Writing skills, my Final paper for Technical Communications is avaliable for viewing, which discusses creating a fast-stable real time object  
+ detection system for Drones/UAVs 
