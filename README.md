@@ -1,5 +1,5 @@
 # Rob-Bara-College-Coding-Portfolio
-A work in Progress College Portfolio of Rob L. Bara which demonstrates the growth and understanding of programming knowledge
+A work in Progress College Portfolio of Rob L. Bara. This portfolio demonstrates a variety of lab reports I have created over the course of my college degree, most of which are unedited from the time of submission, so you can understand the mistakes I made as a student, and witness the growth from my mistakes I demonstrate through later labs.
 Currently consisting of:
 
 -Introduction to C programming Labs 
@@ -17,3 +17,5 @@ Currently consisting of:
 -Signals and Systems:Continuous & Discrete-Computer Assignments written in MATLAB
 
 -For Technical Communication/Writing skills, my Final paper for Technical Communications is avaliable for viewing, which discusses creating a fast-stable real time object  detection system for Drones/UAVs 
+
+-Please request to view my work within Dr Bai's research lab, as it was a government project
