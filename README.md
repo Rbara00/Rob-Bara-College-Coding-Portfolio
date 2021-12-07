@@ -22,6 +22,8 @@ Currently consisting of:
 
 -Stochastic Processes in Signals and Systems Projects as well as a PDF to CDF converter I made
 
+-Digital Communications Lab reports (MATLAB)
+
 -For Technical Communication/Writing skills, my Final paper for Technical Communications is avaliable for viewing, which discusses creating a fast-stable real time object  detection system for Drones/UAVs 
 
 -Please request to view my work within Dr Bai's research lab, as it was a government project
