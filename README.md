@@ -4,6 +4,8 @@ Currently consisting of:
 
 -Introduction to C programming Labs 
 
+-Introduction to Java Labs
+
 -Digital Circuit Design Lab reports (Verilog)
 
 -Processors Systems Lab reports (Assembly and C)
