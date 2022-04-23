@@ -30,6 +30,8 @@ Currently consisting of:
 
 -Data and Computer Communication Homework and Final Project Report (Networking/Intro to Cloud Computing using Amazon Web Services (AWS) ) 
 
+-Introduction to Power Electronics Homework and Final Simulink Project (Focuses on DC-DC Buck/Boost Converters)
+
 -For Technical Communication/Writing skills, my Final paper for Technical Communications is avaliable for viewing, which discusses creating a fast-stable real time object  detection system for Drones/UAVs. Additionally, the first set of documentation for my Senior Design Project includes a group report discussing the background for a modified Plantar test for Felines to test developments in Spinal Cord Injury models.
 
 -Please request to view my work within Dr Bai's research lab, as it was a government project
