@@ -1,4 +1,4 @@
-# Rob-Bara-College-Coding-Portfolio
+# Rob-Bara-College-Portfolio
 A work in Progress College Portfolio of Rob L. Bara. This portfolio demonstrates a variety of lab reports I have created over the course of my college degree, most of which are unedited from the time of submission, so you can understand the mistakes I made as a student, and witness the growth from my mistakes I demonstrate through later labs.
 Currently consisting of:
 
