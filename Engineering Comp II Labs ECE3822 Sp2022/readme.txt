@@ -1,0 +1,1 @@
+Engineering Computation II is a class about creating and examining the efficiency of data structures using C++ and Python. These were the labs and projects I submitted when I took the course in Spring 2020 at Temple University
