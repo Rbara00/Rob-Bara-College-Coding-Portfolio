@@ -37,4 +37,5 @@ Currently consisting of:
 -Please request to view my work within Dr Bai's research lab, as it was a government project
 
 -Python Code for My Senior Design Project can be found here:https://github.com/Rbara00/ThermalLaserSD
+ 
  Final Senior Design paper and presentation will be uplaoded upon completion of Senior Design II in Fall2022
