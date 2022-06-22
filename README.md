@@ -35,3 +35,6 @@ Currently consisting of:
 -For Technical Communication/Writing skills, my Final paper for Technical Communications is avaliable for viewing, which discusses creating a fast-stable real time object  detection system for Drones/UAVs. Additionally, the first set of documentation for my Senior Design Project includes a group report discussing the background for a modified Plantar test for Felines to test developments in Spinal Cord Injury models.
 
 -Please request to view my work within Dr Bai's research lab, as it was a government project
+
+-Python Code for My Senior Design Project can be found here:https://github.com/Rbara00/ThermalLaserSD
+ Final Senior Design paper and presentation will be uplaoded upon completion of Senior Design II in Fall2022
