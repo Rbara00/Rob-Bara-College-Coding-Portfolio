@@ -39,3 +39,5 @@ Currently consisting of:
 -Python Code for My Senior Design Project can be found here:https://github.com/Rbara00/ThermalLaserSD
  
  Final Senior Design paper and presentation will be uplaoded upon completion of Senior Design II in Fall2022
+
+ Additionally, if you would like a sound portfolio utilizing ProTools or Cubase, please contact me at robert.bara@temple.edu for further discussion
