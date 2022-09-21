@@ -18,6 +18,8 @@ A work in Progress College Portfolio of Rob L. Bara. This portfolio demonstrates
 
 -Micro Electronics I Analogue lab reports and final project report using MATLAB and Multisim
 
+-PCB Design consisting of various through hole and surface mount board design using KiCad
+
 -Signals and Systems:Continuous & Discrete-Computer Assignments written in MATLAB
 
 -Stochastic Processes in Signals and Systems Projects as well as a PDF to CDF converter I made
