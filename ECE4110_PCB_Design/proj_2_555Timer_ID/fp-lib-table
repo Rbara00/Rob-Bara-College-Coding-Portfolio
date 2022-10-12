@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "Project 2 555 Timer PTH")(type "KiCad")(uri "${KIPRJMOD}/Project 2 555 Timer PTH.pretty")(options "")(descr ""))
+)
