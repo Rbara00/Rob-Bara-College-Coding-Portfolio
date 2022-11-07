@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "ATMEGA168-20PU")(type "Legacy")(uri "${KIPRJMOD}/ATMEGA168-20PU/ATMEGA168-20PU.lib")(options "")(descr ""))
+  (lib (name "eec")(type "KiCad")(uri "D:/College/Senior Year Fall 2022/PCB/proj_7/project_7/Project 7/Libraries/IC_Maxim_DS1337S+/eec.kicad_sym")(options "")(descr ""))
+)
