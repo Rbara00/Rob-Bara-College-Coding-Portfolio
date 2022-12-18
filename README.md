@@ -38,8 +38,6 @@ A work in Progress College Portfolio of Rob L. Bara. This portfolio demonstrates
 
 -Please request to view my work within Dr Bai's research lab, as it was a government project
 
--Python Code for My Senior Design Project can be found here:https://github.com/Rbara00/ThermalLaserSD
- 
- Final Senior Design paper and presentation will be uploaded upon completion of Senior Design II in Fall2022
+-Python Code, CAD files, and documentation for My Senior Design Project can be found here:https://github.com/Rbara00/ThermalLaserSD
 
  Additionally, if you would like a sound portfolio utilizing ProTools or Cubase, please contact me at robert.bara@temple.edu for further discussion
